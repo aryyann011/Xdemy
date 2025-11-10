@@ -11,6 +11,8 @@ import { Authprovider } from './Context/Authcontext.jsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
 import Browse from './Pages/browse.jsx'
+import ProtectedRoute from './Components/ProtectedRoute.jsx'
+import AddCourse from './Pages/AddCourse.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,15 @@ const router = createBrowserRouter([
       {
         path : '/courses',
         element : <Browse/>
+      },
+      {
+        element :<ProtectedRoute/>,
+        children : [
+          {
+            path : '/teacher/add_course',
+            element : <AddCourse/>
+          }
+        ]
       }
     ]
   }

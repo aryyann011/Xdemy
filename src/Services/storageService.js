@@ -13,22 +13,23 @@ export async function uploadCourseImage(file) {
     const filePath = `${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('course_images') 
+      .from('courses_images')
       .upload(filePath, file);
 
     if (uploadError) {
       throw uploadError;
     }
 
-    const { data: { publicUrl } } = supabase
+    const { data } = supabase
       .storage
-      .from('course_images')
+      .from('courses_images')
       .getPublicUrl(filePath);
 
-    return publicUrl;
+    const publicUrl = data.publicUrl; 
 
+    return publicUrl;
   } catch (error) {
-    console.error('Error uploading course image:', error.message);
+    console.error('Error uploading courses_image:', error.message);
     throw error;
   }
 }

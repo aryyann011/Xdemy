@@ -61,7 +61,7 @@ function Login(){
                 </div>
                 <div className="h-1/7 w-9/10 flex flex-col gap-1 justify-center">
                     <label htmlFor="pass" className="h-3 w-full self-start mb-4">Password</label>
-                    <input type="text" 
+                    <input type="password" 
                     id="pass"
                     className="w-full h-8 p-4 border"
                     placeholder="Enter your password"

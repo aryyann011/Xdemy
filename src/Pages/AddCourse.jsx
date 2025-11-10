@@ -29,15 +29,15 @@ function AddCourse() {
           let imageUrl = null
           if(imageFile){
             toast.info('uploading image....')
-            imageUrl = uploadCourseImage(imageFile);
+            imageUrl = await uploadCourseImage(imageFile);
             toast.success('image uloaded succesfully')
           }
 
           const newCourseInfo = {
             title : data.title,
             description : data.description,
-            price : data.Price,
-            imageUrl : imageUrl
+            price : data.price,
+            imgUrl : imageUrl
           }
 
           await addCourses(newCourseInfo).unwrap()
@@ -85,7 +85,7 @@ function AddCourse() {
         {...register("price", {
             required : true
         })} />
-        {errors.price && <span className="text-red-500 text-sm mt-1">{errors.Price.message}</span>}
+        {errors.price && <span className="text-red-500 text-sm mt-1">{errors.price.message}</span>}
       </div>
       <div className="w-3/10 h-9 mt-4 flex flex-row gap-2 justify-center items-center">
         <label className="font-semibold">Upload an Image:</label>

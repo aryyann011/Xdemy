@@ -36,14 +36,16 @@ function Browse() {
       </div>
 
       <div>
-        {Array.isArray(courses) && courses.map((course) => (
+        {Array.isArray(courses) && courses.map((course) =>{ 
+          console.log("Image URL:", course.imgUrl);
+          return (
           <div key={course.id}>
-            <img className="h-1/2 w-full" src="/image/img1.png" alt="" />
+            <img className="h-1/2 w-full" src={course.imgUrl} alt="" />
             <div className="h-1/2 w-4/5 ml-3 flex flex-col gap-1 mt-3">
-              <h1 className="text-[#0E0E0E] text-1xl font-bold">{course.description}</h1>
-              <span>{course.name}</span>
+              <h1 className="text-[#0E0E0E] text-1xl font-bold">{course.title}</h1>
+              <span>{course.description}</span>
               <div className="flex flex-row gap-2">
-                <span>{course.rating}</span>
+                <span>5</span>
                 <ul className="flex flex-row items-center">
                   {[...Array(5)].map((_, i) => (
                     <li key={i}>
@@ -56,7 +58,7 @@ function Browse() {
               <h1>{course.price}</h1>
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ function App() {
 >
         <Navbar />
         <main>
-          <AddCourse />
+          <Outlet />
         </main>
         <Footer />
         <ToastContainer
