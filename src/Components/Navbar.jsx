@@ -15,7 +15,10 @@ function Navbar(){
     return (
         <>  
         <nav className="min-h-25 sm:min-h-12 w-full flex flex-row relative items-center justify-around ">
-            <Edemy className="left-20"/>
+            <Link to="/" className="flex items-center">
+               <Edemy className="left-20"/>
+            </Link>
+
             {user ? (<div className="h-8 w-1/4 absolute flex flex-row items-center justify-center gap-3 right-4">
                 {user.user_metadata?.role === 'teacher' ? <Link to="/teacher/add_course"><span>Add Course</span></Link>
                 : ""}

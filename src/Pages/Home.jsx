@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="h-auto w-full flex flex-col items-center">
@@ -177,7 +177,9 @@ function Home() {
           </li>
         </ul>
 
-        <button className="h-[50px] w-50 flex justify-center items-center text-[16px] text-[#8A8C8F] border border-[#6B728080]">Show all courses</button>
+        <Link to="/courses">
+          <button className="h-[50px] w-50 flex justify-center items-center text-[16px] text-[#8A8C8F] border border-[#6B728080]">Show all courses</button>
+        </Link>
       </div>
 
       <div className="h-auto w-6/10 mt-20 flex flex-col justify-center items-center gap-10 font-medium text-[#565656]">
