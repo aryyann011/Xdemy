@@ -23,8 +23,9 @@ function App() {
   }`}
 >
         <Navbar />
-        <main>
+        <main className='flex flex-col'>
           <Sidebar />
+          <Outlet/>
         </main>
         <Footer />
         <ToastContainer

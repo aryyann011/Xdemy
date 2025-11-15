@@ -13,6 +13,8 @@ import { store } from './store/store.js'
 import Browse from './Pages/browse.jsx'
 import ProtectedRoute from './Components/ProtectedRoute.jsx'
 import AddCourse from './Pages/AddCourse.jsx'
+import TeacherLayout from './layout/teacherLayout.jsx'
+import Dashboard from './Pages/teacher/TeacherDashboard.jsx'
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,12 @@ const router = createBrowserRouter([
         element :<ProtectedRoute/>,
         children : [
           {
-            path : '/teacher/add_course',
-            element : <AddCourse/>
+            path : '/teacher',
+            element : <TeacherLayout/>,
+            children : [
+              {path : '/teacher/dashboard', element : <Dashboard/>},
+              {path : '/teacher/addCourse', element : <AddCourse/>}
+            ]
           }
         ]
       }

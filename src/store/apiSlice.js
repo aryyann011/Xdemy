@@ -11,7 +11,7 @@ export const apiSlice = createApi({
     reducerPath : 'api',
     baseQuery : fakebaseQuery,
 
-    tagTypes : ['courses', 'section', 'chapter'],
+    tagTypes : ['courses', 'section', 'chapter', 'section', 'chapter'],
 
     endpoints : (builder) => ({
         getCourses : builder.query({
@@ -88,6 +88,86 @@ export const apiSlice = createApi({
                 }
             },
             providesTags : ['chapter']
+        }),
+
+        AddSection : builder.mutation({
+            async queryFn(newSection){
+                try {
+                    const {data, error} = await supabase.from('section').insert(newSection).select
+                    if(error) throw error
+
+                    return {data : data[0]}
+                } catch (error) {
+                    return {error : {status : error.code, data : error.data}}
+                }
+            }
+        }), 
+
+        updataSection : builder.mutation({
+            async queryFn(upadatedSection){
+                try{
+                    const {data, error} = await supabase.from('section').eq('id', upadatedSection.id).update(upadatedSection)
+                    if(error) throw error 
+
+                    return {data : data}
+                }
+                catch(error){
+                    return {error : {status : error.code, data : error.data}}
+                }
+            }
+        }),
+
+        deleteSection : builder.mutation({
+            async queryFn(Id){
+                try {
+                    const {data, error} = await supabase.from('section').eq('id', Id).delete()
+                    if(error) throw error
+                    
+                    return {data : data}
+                } catch (error) {
+                    return {error : {status : error.code, data : error.data}}
+                }
+            }
+        }),
+
+        AddChapter : builder.mutation({
+            async queryFn(newChapter){
+                try {
+                    const {data, error} = await supabase.from('Chapter').insert(newChapter).select()
+                    if(error) throw error
+
+                    return {data : data[0]}
+                } catch (error) {
+                    return {error : {status : error.code, data : error.data}}
+                }
+            }
+        }), 
+
+        updataChapter : builder.mutation({
+            async queryFn(upadatedChapter){
+                try{
+                    const {data, error} = await supabase.from('chapter').eq('id', upadatedChapter.id).update(upadatedChapter)
+                    if(error) throw error 
+
+                    return {data : data}
+                }
+                catch(error){
+                    return {error : {status : error.code, data : error.data}}
+                }
+            }
+        }),
+
+        deleteChapter : builder.mutation({
+            async queryFn(Id){
+                try {
+                    const {data, error} = await supabase.from('chapter').eq('id', Id).delete()
+                    if(error) throw error
+                    
+                    return {data : data}
+                } catch (error) {
+                    return {error : {status : error.code, data : error.data}}
+                }
+            }
         })
 
     }),
