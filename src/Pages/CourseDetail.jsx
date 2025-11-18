@@ -9,7 +9,6 @@ import {
 import Dropdown from "../Components/Dropdown";
 
 function ChapterList({id}){
-
     const {data : chapters, isLoading : isChaptertloading} = useGetChapterForSectionQuery(id)
 
     return (

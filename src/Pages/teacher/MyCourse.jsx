@@ -56,6 +56,9 @@ function Mycourse() {
                 <span>(122)</span>
               </div>
               <h1>{mycourse.price}</h1>
+              <Link to={`/teacher/edit-course/${mycourse.id}`}>
+                <button>Edit</button>
+              </Link>
             </div>
           </div>
         )})}
