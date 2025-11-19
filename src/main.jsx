@@ -16,6 +16,7 @@ import AddCourse from './Pages/AddCourse.jsx'
 import TeacherLayout from './layout/teacherLayout.jsx'
 import Dashboard from './Pages/teacher/TeacherDashboard.jsx'
 import Mycourse from './Pages/teacher/MyCourse.jsx'
+import EditCourse from './Pages/teacher/EditCourse.jsx'
 
 const router = createBrowserRouter([
   {
@@ -37,17 +38,16 @@ const router = createBrowserRouter([
       {
         element :<ProtectedRoute/>,
         children : [
-          {
-            path : '/teacher',
-            element : <TeacherLayout/>,
-            children : [
-              {path : '/teacher/dashboard', element : <Dashboard/>},
-              {path : '/teacher/addCourse', element : <AddCourse/>},
-              {path : '/teacher/mycourse', element : <Mycourse/>}
-            ]
-          }
+          // {
+          //   path : '/teacher',
+          //   element : <TeacherLayout/>,
+          //   children : [
+          {path : '/teacher/dashboard', element : <Dashboard/>},
+          {path : '/teacher/addCourse', element : <AddCourse/>},
+          {path : '/teacher/mycourse', element : <Mycourse/>},
+          {path : '/teacher/edit-course/:courseId', element : <EditCourse/>}
         ]
-      }
+      } 
     ]
   }
 ])

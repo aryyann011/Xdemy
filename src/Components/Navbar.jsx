@@ -20,7 +20,7 @@ function Navbar(){
             </Link>
 
             {user ? (<div className="h-8 w-1/4 absolute flex flex-row items-center justify-center gap-3 right-4">
-                {user.user_metadata?.role === 'teacher' ? <Link to="/teacher/add_course"><span>Add Course</span></Link>
+                {user.user_metadata?.role === 'teacher' ? <Link to="/teacher/addCourse"><span>Add Course</span></Link>
                 : ""}
                 {/* <span><Link to="/login">Login</Link></span> */}
                 <button onClick={logoutUser} className="h-full w-1/3 rounded-2xl bg-[#2563EB] text-[#FFFFFF] text-sm bottom-1.5 object-contain">

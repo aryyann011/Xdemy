@@ -181,7 +181,7 @@ export const apiSlice = createApi({
         getTeacherCourse : builder.query({
             async queryFn(teacher_Id){
                 try {
-                    const {data, error} = await supabase.from('courses').select('*').eq('user_id', teacher_Id).single()
+                    const {data, error} = await supabase.from('courses').select('*').eq('user_id', teacher_Id)
                     if(error) throw error
 
                     return {data : data}

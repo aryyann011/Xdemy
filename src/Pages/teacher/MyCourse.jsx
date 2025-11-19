@@ -1,11 +1,12 @@
 import React from 'react'
-import { useGetTeachermycourseQuery } from '../../store/apiSlice'
+import { useGetTeacherCourseQuery } from '../../store/apiSlice'
 import { useAuth } from '../../Context/Authcontext'
+import { Link } from 'react-router-dom'
 
 function Mycourse() {
 
     const {user} = useAuth()
-    const {data : mycourses, isLoading, isError} = useGetTeachermycourseQuery(user.id)
+    const {data : mycourses, isLoading, isError} = useGetTeacherCourseQuery(user.id)
 
     if(isLoading) return <h1>loading....</h1>
 
@@ -57,7 +58,7 @@ function Mycourse() {
               </div>
               <h1>{mycourse.price}</h1>
               <Link to={`/teacher/edit-course/${mycourse.id}`}>
-                <button>Edit</button>
+                <button className='h-7 w-10 bg-[#2563EB] text-[#FFFFFF]'>Edit</button>
               </Link>
             </div>
           </div>

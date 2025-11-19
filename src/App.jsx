@@ -11,10 +11,11 @@ import AddCourse from './Pages/AddCourse'
 import {ToastContainer} from 'react-toastify'
 import Dropdown from './Components/Dropdown'
 import Sidebar from './Components/teacher/Sidebar'
+import EditCourse from './Pages/teacher/EditCourse'
 
 function App() {
 
-  const {isloginModalOpen, isSignupModalOpen} = useAuth()
+  const {isloginModalOpen, isSignupModalOpen, user} = useAuth()
   return (
     <div className='min-h-screen min-w-screen'>
       <div
@@ -23,8 +24,9 @@ function App() {
   }`}
 >
         <Navbar />
-        <main className='flex flex-col'>
-          <Sidebar />
+        <main className='flex flex-row'>
+          {user?.user_metadata?.role === 'teacher' ? <Sidebar/>
+                : ""}
           <Outlet/>
         </main>
         <Footer />

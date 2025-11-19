@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetCoursesQuery } from "../store/apiSlice";
+import { Link } from "react-router-dom";
 
 function Browse() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery();
@@ -41,25 +42,27 @@ function Browse() {
         {Array.isArray(courses) && courses.map((course) =>{ 
           console.log("Image URL:", course.imgUrl);
           return (
-          <div key={course.id} className="h-80 rounded-xl shadow-md flex flex-col hover:shadow-lg transition">
-            <img className="w-full h-1/2 object-cover rounded-t-xl" src={course.imgUrl} alt="" />
-            <div className="h-1/2 w-4/5 ml-3 flex flex-col gap-1 mt-3">
-              <h1 className="text-[#0E0E0E] text-1xl font-bold">{course.title}</h1>
-              <span>{course.description}</span>
-              <div className="flex flex-row gap-2">
-                <span>5</span>
-                <ul className="flex flex-row items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <li key={i}>
-                      <img src="/image/star_icon.png" alt="" />
-                    </li>
-                  ))}
-                </ul>
-                <span>(122)</span>
+            <Link to={`/CourseDetail/${course.id}`}>
+              <div key={course.id} className="h-80 rounded-xl shadow-md flex flex-col hover:shadow-lg transition">
+                <img className="w-full h-1/2 object-cover rounded-t-xl" src={course.imgUrl} alt="" />
+                <div className="h-1/2 w-4/5 ml-3 flex flex-col gap-1 mt-3">
+                  <h1 className="text-[#0E0E0E] text-1xl font-bold">{course.title}</h1>
+                  <span>{course.description}</span>
+                  <div className="flex flex-row gap-2">
+                    <span>5</span>
+                    <ul className="flex flex-row items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <li key={i}>
+                          <img src="/image/star_icon.png" alt="" />
+                        </li>
+                      ))}
+                    </ul>
+                    <span>(122)</span>
+                  </div>
+                  <h1>{course.price}</h1>
+                </div>
               </div>
-              <h1>{course.price}</h1>
-            </div>
-          </div>
+            </Link>
         )})}
       </div>
     </div>
