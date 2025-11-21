@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import SectionManager from '../../Components/SectionManager';
 import { 
   useGetCourseDetailQuery, 
   useUpdateCourseMutation,
@@ -9,19 +10,44 @@ import {
   useGetSectionsForCourseQuery 
 } from '../../store/apiSlice';
 
+function Chapter(Id){
+    const {data : chapters, isLoading : isChapterLoading} = useGetChapterForSectionQuery(Id)
+
+    return (
+        <div>
+          {Array.isArray(chapters) && chapters.map((chapter) => (
+            <div key={chapter.id} className="flex justify-between">
+              <p>{chapter.title}</p>
+              <p>{chapter.duration}</p>
+              <div className="h-5 w-7 p-4 flex flex-row">
+                  <div className="mr-3" onClick={() => {
+                      setCheck(true);
+                      setInfo({ id: contact.id, name: contact.name, email: contact.email });
+                      }}
+                      >
+                      <i class="fa-solid fa-user-pen"></i>
+                  </div>
+                  <div onClick={() => deleteContact(contact.id)}>
+                      <i class="fa-solid fa-trash"></i>
+                  </div>
+              </div>
+            </div>
+          ))}
+        </div>
+    )
+}
 function EditCourse() {
-  // Match the param name from your router (courseId)
+
   const { courseId } = useParams(); 
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   
-  // Fetch the data
-  const { data: course, isLoading } = useGetCourseDetailQuery(courseId);
+ 
+  const { data: course, isLoading : isCourseLoading } = useGetCourseDetailQuery(courseId);
   const [updateCourse, { isLoading: isUpdating }] = useUpdateCourseMutation();
 
-  const {data : sections, isSectionLoading} = useGetSectionsForCourseQuery()
+  const {data : sections, isLoading : isSectionLoading} = useGetSectionsForCourseQuery()
 
-  // Pre-fill the form when data arrives
   useEffect(() => {
     if (course) {
       reset({
@@ -57,7 +83,6 @@ function EditCourse() {
     }
   };
 
-  // Handle loading state so it doesn't crash
   if (isLoading) return <div>Loading course data...</div>;
 
   return (
@@ -73,7 +98,6 @@ function EditCourse() {
             id="title"
             className="w-full h-8 p-4 mt-2 border"
             placeholder="Enter the title"
-            // No 'value' prop. react-hook-form handles it via 'reset'
             {...register("title", { required: true })}
           />
           {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
@@ -122,9 +146,7 @@ function EditCourse() {
       <form>
         <h1>Course Chapter</h1>
         
-        {sections && sections.map((section) => (
-          
-        ))}
+        <SectionManager courseId={courseId}/>
       </form>
     </div>
   );

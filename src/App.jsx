@@ -12,6 +12,7 @@ import {ToastContainer} from 'react-toastify'
 import Dropdown from './Components/Dropdown'
 import Sidebar from './Components/teacher/Sidebar'
 import EditCourse from './Pages/teacher/EditCourse'
+import "@fortawesome/fontawesome-free/css/all.css";
 
 function App() {
 

@@ -11,9 +11,9 @@ function Dropdown({ title, subtitle, children }) {
       >
         <div className="text-white font-semibold">{title}</div>
         <div className="text-gray-400">{subtitle}</div>
+        
       </div>
 
-      {/* Content */}
       {open && (
         <div className="bg-gray-900 px-6 py-3 space-y-2 text-gray-300">
           {children}
