@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { FiSave } from "react-icons/fi"; 
 import { toast } from 'react-toastify'; 
+import { FaCirclePlay } from "react-icons/fa6";
 
 function ChapterList({sectionId: sectionId, edit}){ 
 
@@ -71,40 +72,45 @@ function ChapterList({sectionId: sectionId, edit}){
 
 
     return (
-        <div className='flex flex-col gap-2'>
+        <div className='w-full flex flex-col gap-2'>
             {Array.isArray(chapters) && chapters.map((chapter) => (
-                <div key={chapter.id} className="flex justify-between items-center p-2 border-b">
+                <div key={chapter.id} className=" w-full flex justify-between items-center p-2 border-b">
                     
                     <p className="w-1/2">{chapter.title}</p>
-                    <p className="w-1/4">{chapter.duration}</p>
+                    <div className='flex gap-2'>
+                        <p className="w-1/4 ">{chapter.duration}</p>
 
-                    {edit && 
-                        <div className="flex gap-2">
-                            <FaRegEdit
-                                onClick={() => {
-                                    setIsEditing(true);
-                                    setIstitle(chapter.title); 
-                                    setIsduration(chapter.duration); 
-                                    setIsid(chapter.id);
-                                }}
-                                className="hover:text-blue-500 transition cursor-pointer"
-                            />
-                            
-                            <MdDelete 
-                                onClick={() => handleDelete(chapter.id)} 
-                                className="hover:text-red-500 transition cursor-pointer" 
-                            />
-                        </div>
-                    }
+                        {edit ?
+                            <div className="flex gap-2">
+                                <FaRegEdit
+                                    onClick={() => {
+                                        setIsEditing(true);
+                                        setIsAdd(false);
+                                        setIstitle(chapter.title); 
+                                        setIsduration(chapter.duration); 
+                                        setIsid(chapter.id);
+                                    }}
+                                    className="hover:text-blue-500 transition cursor-pointer"
+                                />
+                                
+                                <MdDelete 
+                                    onClick={() => handleDelete(chapter.id)} 
+                                    className="hover:text-red-500 transition cursor-pointer" 
+                                />
+                            </div> : 
+                            <FaCirclePlay/>
+                        }
+                    </div>
                 </div>
             ))}
             {edit && <button
                 onClick={() => {setIsEditing(true);
                     setIsAdd(true);
                 }}
-                className="bg-blue-500 text-white px-3 py-1 rounded">
+                className="w-1/3 bg-blue-500 text-white px-3 py-1 rounded">
                 Add Chapter
-            </button>}
+            </button> 
+            }
 
             {isEditing && 
                 <form onSubmit={isAdd ? AddTheChapter : EditTheChapter} className="p-4 rounded-md mt-4">

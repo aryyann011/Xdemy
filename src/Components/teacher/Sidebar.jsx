@@ -29,7 +29,7 @@ function Sidebar() {
           { to: '/teacher/dashboard', icon: "/image/home_icon.svg", text: "Dashboard" },
           // { to: '/teacher/addCourse', icon: "/image/add_icon.svg", text: "Edit Courses" },
           { to: '/teacher/mycourse', icon: "/image/MyCourses.png", text: "My Courses" },
-          { to: '/', icon: "/image/person_tick_icon.png", text: "Students Enrolled" },
+          { to: '/courses', icon: "/image/person_tick_icon.png", text: "All Courses" },
         ].map((item) => (
           
           <Link key={item.to} to={item.to} className='flex items-center gap-4 p-2 rounded-lg hover:bg-gray-100'>
