@@ -232,6 +232,46 @@ export const apiSlice = createApi({
             invalidatesTags: ['courses'], 
         }),
 
+        enrollStudent: builder.mutation({
+            async queryFn({ courseId, userId }) {
+                try {
+                const { data, error } = await supabase
+                    .from('Enrollment') 
+                    .insert({ 
+                    course_id: courseId, 
+                    user_id: userId 
+                    })
+                    .select()
+                    .single();
+
+                if (error) throw error;
+                return { data };
+                } catch (error) {
+                return { error: { status: error.code, data: error.message } };
+                }
+            },
+            invalidatesTags: ['Enrollment'], 
+        }),
+
+        checkEnrollment: builder.query({
+            async queryFn({ courseId, userId }) {
+                try {
+                const { data, error } = await supabase
+                    .from('Enrollment')
+                    .select('*')
+                    .eq('course_id', courseId)
+                    .eq('user_id', userId)
+                    .maybeSingle(); 
+
+                if (error) throw error;
+                return { data }; 
+                } catch (error) {
+                return { error: { status: error.code, data: error.message } };
+                }
+            },
+            providesTags: ['Enrollment'],
+        }),
+
     }),
 
 });
@@ -240,4 +280,4 @@ export const {useGetCoursesQuery, useAddCoursesMutation, useGetCourseDetailQuery
      useGetChapterForSectionQuery, useGetSectionsForCourseQuery,
     useAddChapterMutation, useAddSectionMutation, useDeleteChapterMutation, useDeleteSectionMutation,
     useUpdataChapterMutation, useUpdateSectionMutation, useGetTeacherCourseQuery, useDeleteCourseMutation,
-    useUpdateCourseMutation} = apiSlice
+    useUpdateCourseMutation, useCheckEnrollmentQuery, useEnrollStudentMutation} = apiSlice

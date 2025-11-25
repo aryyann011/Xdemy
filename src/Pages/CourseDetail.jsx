@@ -3,9 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import {
   useGetSectionsForCourseQuery,
   useGetCourseDetailQuery,
+  useEnrollStudentMutation,
+
 } from "../store/apiSlice";
 import Dropdown from "../Components/Dropdown";
 import ChapterList from "../Components/ChapterList";
+import { useAuth } from "../Context/Authcontext";
+import { toast } from "react-toastify";
 
 function CourseDetail() {
   const { courseId } = useParams();
@@ -14,6 +18,20 @@ function CourseDetail() {
   const { data: course, isLoading: isCourseLoading } =
     useGetCourseDetailQuery(courseId);
 
+  const [ enrollStudent ] = useEnrollStudentMutation()
+  const {user, OpenloginModal} = useAuth()
+
+  const enrollTheUser = async () => {
+    
+    try {
+
+      if(!user) OpenloginModal()
+      await enrollStudent(user.id, courseId).unwrap()
+    } catch (error) {
+      console.log("failed to enroll in this course :", error)
+      toast.error('failed to enroll')
+    }
+  }
   if (isSectionLoading || isCourseLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -26,13 +44,10 @@ function CourseDetail() {
   return (
     <div className="max-w-7xl mx-auto p-6 lg:p-10">
       
-      {/* GRID LAYOUT: 2 Columns on Desktop, 1 on Mobile */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         
-        {/* --- LEFT COLUMN (Main Content) --- */}
         <div className="lg:col-span-2 flex flex-col gap-8">
           
-          {/* Header Section */}
           <div className="flex flex-col gap-3">
             <h1 className="text-4xl font-bold text-gray-900">{course.title}</h1>
             <p className="text-lg text-gray-700">{course.description}</p>
@@ -48,7 +63,6 @@ function CourseDetail() {
             </div>
           </div>
 
-          {/* Course Structure Section */}
           <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Course Structure</h2>
             <div className="space-y-2">
@@ -57,7 +71,6 @@ function CourseDetail() {
                   <Dropdown
                     key={section.id}
                     title={section.title}
-                    // subtitle={section.subtitle || "3 lectures • 25min"} 
                     edit={false}
                   >
                     <ChapterList sectionId={section.id} edit={false} />
@@ -85,30 +98,27 @@ function CourseDetail() {
           </div>
         </div>
 
-        {/* --- RIGHT COLUMN (Sidebar / Course Card) --- */}
         <div className="lg:col-span-1">
           <div className="sticky top-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
-            {/* Image */}
             <div className="h-48 w-full overflow-hidden bg-gray-200">
                <img
                 className="w-full h-full object-cover"
-                src={course.imageUrl || "/image/img1.png"} // Fallback image
+                src={course.imageUrl || "/image/img1.png"} 
                 alt={course.title}
               />
             </div>
 
-            {/* Content */}
             <div className="p-6 flex flex-col gap-4">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">${course.price}</h2>
                 <span className="text-gray-500 line-through text-sm">$99.99</span>
               </div>
 
-              <button className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors">
-                Add to Cart
+              <button onClick={enrollTheUser} className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                Enroll Now
               </button>
               <button className="w-full border border-black text-black font-bold py-3 rounded-lg hover:bg-gray-50 transition-colors">
-                Buy Now
+                Add to Cart
               </button>
 
               <div className="text-sm text-gray-600 mt-2 space-y-2">

@@ -3,14 +3,17 @@ import Edemy from "./Edemy";
 import { Link } from "react-router-dom";
 import { Authprovider, useAuth } from "../Context/Authcontext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar(){
 
     const [islogged, setIslogged] = useState(false)
     const {user, logout, OpenloginModal, OpenSignupModal} = useAuth()
+    const navigate = useNavigate()
 
     const logoutUser = () => {
         logout()
+        navigate('/')
     }
     return (
         <>  

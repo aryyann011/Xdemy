@@ -77,11 +77,11 @@ function ChapterList({sectionId: sectionId, edit}){
                 <div key={chapter.id} className=" w-full flex justify-between items-center p-2 border-b">
                     
                     <p className="w-1/2">{chapter.title}</p>
-                    <div className='flex gap-2'>
+                    <div className='w-1/4 flex justify-end gap-4'>
                         <p className="w-1/4 ">{chapter.duration}</p>
 
                         {edit ?
-                            <div className="flex gap-2">
+                            <div className="w-1/4 flex gap-2">
                                 <FaRegEdit
                                     onClick={() => {
                                         setIsEditing(true);
@@ -98,7 +98,7 @@ function ChapterList({sectionId: sectionId, edit}){
                                     className="hover:text-red-500 transition cursor-pointer" 
                                 />
                             </div> : 
-                            <FaCirclePlay/>
+                            <FaCirclePlay className='w-1/4 text-2xl'/>
                         }
                     </div>
                 </div>

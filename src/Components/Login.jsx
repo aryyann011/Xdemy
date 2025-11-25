@@ -3,6 +3,9 @@ import { data, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../Context/Authcontext";
 import { useState } from "react";
+import { GiCancel } from "react-icons/gi";
+import { MdCancel } from "react-icons/md";
+
 
 function Login(){
 
@@ -31,7 +34,10 @@ function Login(){
         <div className="h-full w-full fixed flex flex-row justify-center inset-0 items-center z-50">
             <form action="" onSubmit={handleSubmit(loginUser)} className="h-3/4 w-1/4 flex flex-col gap-6 items-center bg-[#FFFFFF] p-5 rounded-2xl">
                 <div className="h-1/8 w-full flex flex-col items-center gap-1">
-                    <h1 className="text-[#212126] font-bold">Sign in to LMS</h1>
+                <div className="w-full flex justify-end gap-23">
+                    <h1 className="text-[#212126] font-bold right-4">Sign in to LMS</h1>
+                    <MdCancel onClick={closeloginModal} className="text-3xl cursor-pointer"/>
+                </div>
                     <p className="text-[#6B7280] text-[14px]">Welcome back! Please sign in to continue</p>
                 </div>
                 <button className="h-8 w-9/10 border flex flex-row justify-center items-center gap-3">

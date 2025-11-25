@@ -26,7 +26,7 @@ function App() {
 >
         <Navbar />
         <main className='flex flex-row'>
-          {user?.user_metadata?.role === 'teacher' ? <Sidebar/>
+          {user ? <Sidebar/>
                 : ""}
           <Outlet/>
         </main>
