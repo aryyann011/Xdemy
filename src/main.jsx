@@ -17,6 +17,7 @@ import TeacherLayout from './layout/teacherLayout.jsx'
 import Dashboard from './Pages/teacher/TeacherDashboard.jsx'
 import Mycourse from './Pages/teacher/MyCourse.jsx'
 import EditCourse from './Pages/teacher/EditCourse.jsx'
+import StudentDashboard from './Pages/Student/Dashboard.jsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path : '/courses',
         element : <Browse/>
+      },
+      {
+        path : '/mylearning',
+        element : <StudentDashboard/>
       },
       {
         element :<ProtectedRoute/>,

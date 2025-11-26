@@ -3,8 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import {
   useGetSectionsForCourseQuery,
   useGetCourseDetailQuery,
-  useEnrollStudentMutation,
-
+  useGetEnrolledCoursesQuery,
+  useCheckEnrollmentQuery,
+  useEnrollStudentMutation
 } from "../store/apiSlice";
 import Dropdown from "../Components/Dropdown";
 import ChapterList from "../Components/ChapterList";
@@ -13,34 +14,54 @@ import { toast } from "react-toastify";
 
 function CourseDetail() {
   const { courseId } = useParams();
+  const { user, OpenloginModal, isLoading: isAuthLoading } = useAuth();
   const { data: sections, isLoading: isSectionLoading } =
     useGetSectionsForCourseQuery(courseId);
   const { data: course, isLoading: isCourseLoading } =
     useGetCourseDetailQuery(courseId);
+  const { data: enrollments, isLoading } = useGetEnrolledCoursesQuery(user?.id, {
+      skip: !user
+    });
 
+  const { 
+    data: isEnrolled, 
+    isLoading: isCheckingEnrollment,
+    error: enrollmentError // <--- GET THIS ERROR
+  } = useCheckEnrollmentQuery(
+    { courseId, userId: user?.id }, 
+    { skip: !user } 
+  );
+
+  console.log("ENROLLMENT DEBUG:", { isEnrolled, isCheckingEnrollment, enrollmentError });
   const [ enrollStudent ] = useEnrollStudentMutation()
-  const {user, OpenloginModal} = useAuth()
 
   const enrollTheUser = async () => {
-    
+    if(!user) OpenloginModal()
+    if(isEnrolled){
+      toast("Already Enrolled in this course");
+      return;
+    }
     try {
+      await enrollStudent({
+          userId: user.id, 
+          courseId: courseId
+      }).unwrap();
 
-      if(!user) OpenloginModal()
-      await enrollStudent(user.id, courseId).unwrap()
+      toast.success('successfully enrolled')
     } catch (error) {
       console.log("failed to enroll in this course :", error)
       toast.error('failed to enroll')
     }
   }
-  if (isSectionLoading || isCourseLoading) {
+  if (isSectionLoading || isCourseLoading || isAuthLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <h1 className="text-xl text-gray-600">Loading course details...</h1>
+        <h1 className="text-xl text-gray-600">Loading...</h1>
       </div>
     );
   }
   if (!course) return <div className="p-10 text-red-500">Course not found</div>;
-
+  console.log("User:", user?.id, "Course:", courseId, "Is Enrolled:", isEnrolled);
   return (
     <div className="max-w-7xl mx-auto p-6 lg:p-10">
       
@@ -114,9 +135,36 @@ function CourseDetail() {
                 <span className="text-gray-500 line-through text-sm">$99.99</span>
               </div>
 
-              <button onClick={enrollTheUser} className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700 transition-colors">
-                Enroll Now
-              </button>
+              {!user ? (
+                <button 
+                  onClick={enrollTheUser} 
+                  className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg"
+                >
+                  Enroll Now (Login Required)
+                </button>
+              ) : isCheckingEnrollment ? (
+                 // CASE B: Actually Loading
+                 <button className="w-full bg-gray-400 text-white font-bold py-3 rounded-lg cursor-not-allowed">
+                   Checking Access...
+                 </button>
+              ) : isEnrolled ? (
+                // CASE C: User is enrolled
+                <button 
+                  onClick={() => navigate('/my-learning')}
+                  className="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700"
+                >
+                  Go to Course
+                </button>
+              ) : (
+                // CASE D: User is NOT enrolled (OR the check failed)
+                // We default to showing the button so they can try again
+                <button 
+                  onClick={enrollTheUser} 
+                  className="w-full bg-purple-600 text-white font-bold py-3 rounded-lg hover:bg-purple-700"
+                >
+                  Enroll Now
+                </button>
+              )}
               <button className="w-full border border-black text-black font-bold py-3 rounded-lg hover:bg-gray-50 transition-colors">
                 Add to Cart
               </button>

@@ -257,26 +257,49 @@ export const apiSlice = createApi({
             async queryFn({ courseId, userId }) {
                 try {
                 const { data, error } = await supabase
-                    .from('Enrollment')
-                    .select('*')
+                    .from('Enrollment') 
+                    .select('id')
                     .eq('course_id', courseId)
                     .eq('user_id', userId)
-                    .maybeSingle(); 
+                    .maybeSingle();
+
+                console.log("Check Enrollment Result:", { data, error, courseId, userId });
 
                 if (error) throw error;
-                return { data }; 
+                return { data: !!data }; 
                 } catch (error) {
                 return { error: { status: error.code, data: error.message } };
                 }
             },
             providesTags: ['Enrollment'],
         }),
+        
+        getEnrolledCourses: builder.query({
+        async queryFn(userId) {
+            try {
+            const { data, error } = await supabase
+                .from('Enrollment')
+                .select(`
+                id,
+                created_at,
+                course:courses(*) 
+                `) 
+                .eq('user_id', userId);
+
+            if (error) throw error;
+            return { data };
+            } catch (error) {
+            return { error: { status: error.code, data: error.message } };
+            }
+        },
+      providesTags: ['Enrollment'],
+    }),
 
     }),
 
 });
 
-export const {useGetCoursesQuery, useAddCoursesMutation, useGetCourseDetailQuery,
+export const {useGetCoursesQuery, useGetEnrolledCoursesQuery, useAddCoursesMutation, useGetCourseDetailQuery,
      useGetChapterForSectionQuery, useGetSectionsForCourseQuery,
     useAddChapterMutation, useAddSectionMutation, useDeleteChapterMutation, useDeleteSectionMutation,
     useUpdataChapterMutation, useUpdateSectionMutation, useGetTeacherCourseQuery, useDeleteCourseMutation,
