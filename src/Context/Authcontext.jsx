@@ -38,6 +38,7 @@ export function Authprovider({children}){
         signup: supabaseService.createAccount,
         login: supabaseService.login,
         logout: supabaseService.logout,
+        loginWithGoogle: supabaseService.loginWithGoogle,
 
         isloginModalOpen,
         OpenloginModal : () => setIsloginMoalOpen(true),

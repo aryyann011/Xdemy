@@ -13,7 +13,7 @@ function Login(){
     const [error, setError] = useState("")
     const navigate = useNavigate()
     const {register, handleSubmit, formState: {errors}, reset, setValue} = useForm()
-    const {login, closeloginModal, OpenSignupModal} = useAuth()
+    const {login, loginWithGoogle, closeloginModal, OpenSignupModal} = useAuth()
     const loginUser = async (data) => {
         setError("")
         try{
@@ -29,6 +29,15 @@ function Login(){
             setError(error.message)
         }
     }
+
+    const handleGoogleLogin = async () => {
+        try {
+            await loginWithGoogle();
+        } catch (error) {
+            console.log(error);
+            toast.error("Google Login Failed");
+        }
+    };
 
     const handleDemoLogin = (role) => {
         if (role === 'teacher') {
@@ -49,7 +58,7 @@ function Login(){
                 </div>
                     <p className="text-[#6B7280] text-[14px]">Welcome back! Please sign in to continue</p>
                 </div>
-                <button className="h-8 w-9/10 border flex flex-row justify-center items-center gap-3">
+                <button onClick={handleGoogleLogin} className="h-8 w-9/10 border cursor-pointer flex flex-row justify-center items-center gap-3">
                     <img src="/image/images.png" className="h-3/4" alt="" />
                     <p>Continue with google</p>
                 </button>

@@ -69,6 +69,21 @@ export class SupabaseService {
 
         return subscription;
     }
+
+    async loginWithGoogle() {
+        try {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+            });
+
+            if (error) throw error;
+            return data;
+
+        } catch (error) {
+            console.error("Google login error: ", error.message);
+            throw error;
+        }
+    }
 }
 
 const supabaseService = new SupabaseService();

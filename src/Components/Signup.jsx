@@ -9,7 +9,7 @@ function Signup(){
 
 const [error, setError] = useState("")
 const {register, handleSubmit, formState : {errors}} = useForm()
-const {signup, closeSignupModal, OpenloginModal} = useAuth()
+const {signup, loginWithGoogle, closeSignupModal, OpenloginModal} = useAuth()
 const navigate = useNavigate()
 const Signupuser = async(data) => {
     setError("")
@@ -25,6 +25,14 @@ const Signupuser = async(data) => {
         setError(error.message)
     }
 }
+const handleGoogleSignup = async () => {
+    try {
+        await loginWithGoogle();
+        closeSignupModal(); 
+    } catch (error) {
+        toast.error("Could not reach Google server.");
+    }
+};
 
     return (
         <div className="h-full w-full fixed flex flex-row justify-center inset-0 items-center z-50">
@@ -33,7 +41,7 @@ const Signupuser = async(data) => {
                     <h1 className="text-[#212126] font-bold">Create your account</h1>
                     <p className="text-[#6B7280] text-[14px]">Welcome! Please fill in the details to get started.</p>
                 </div>
-                <button className="h-8 w-9/10 border flex flex-row justify-center items-center gap-3">
+                <button onClick={handleGoogleSignup} className="h-8 w-9/10 cursor-pointer border flex flex-row justify-center items-center gap-3">
                     <img src="/image/images.png" className="h-3/4" alt="" />
                     <p>Continue with google</p>
                 </button>
