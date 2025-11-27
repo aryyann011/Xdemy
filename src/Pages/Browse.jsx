@@ -44,10 +44,10 @@ function Browse() {
           return (
             <Link key={course.id} to={`/CourseDetail/${course.id}`}>
               <div className="h-80 rounded-xl shadow-md flex flex-col hover:shadow-lg transition">
-                <img className="w-full h-1/2 object-cover rounded-t-xl" src={course.imgUrl} alt="" />
+                <img className="w-full h-1/2 object-contain rounded-t-xl" src={course.imgUrl} alt="" />
                 <div className="h-1/2 w-4/5 ml-3 flex flex-col gap-1 mt-3">
                   <h1 className="text-[#0E0E0E] text-1xl font-bold">{course.title}</h1>
-                  <span>{course.description}</span>
+                  {/* <span>{course.description}</span> */}
                   <div className="flex flex-row gap-2">
                     <span>5</span>
                     <ul className="flex flex-row items-center">

@@ -123,8 +123,8 @@ function CourseDetail() {
           <div className="sticky top-6 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
             <div className="h-48 w-full overflow-hidden bg-gray-200">
                <img
-                className="w-full h-full object-cover"
-                src={course.imageUrl || "/image/img1.png"} 
+                className="w-full h-full object-contain"
+                src={course.imgUrl || "/image/img1.png"} 
                 alt={course.title}
               />
             </div>
@@ -173,13 +173,13 @@ function CourseDetail() {
                 <p className="font-semibold text-black">This course includes:</p>
                 <ul className="space-y-1">
                   <li className="flex items-center gap-2">
-                    <span>📺</span> 14 hours on-demand video
+                     14 hours on-demand video
                   </li>
                   <li className="flex items-center gap-2">
-                    <span>📱</span> Access on mobile and TV
+                    Access on mobile and TV
                   </li>
                   <li className="flex items-center gap-2">
-                    <span>🏆</span> Certificate of completion
+                    Certificate of completion
                   </li>
                 </ul>
               </div>

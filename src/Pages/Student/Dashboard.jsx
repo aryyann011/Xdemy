@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 function StudentDashboard() {
   const { user } = useAuth();
   
-  // Fetch the courses the student has bought
   const { data: enrollments, isLoading } = useGetEnrolledCoursesQuery(user?.id, {
     skip: !user
   });
@@ -21,7 +20,6 @@ function StudentDashboard() {
       <div className="w- bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
         <table className="w-full text-left border-collapse">
           
-          {/* --- TABLE HEAD --- */}
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200 text-gray-600 text-sm uppercase tracking-wider">
               <th className="p-6 font-semibold">Course Name</th>
@@ -31,18 +29,15 @@ function StudentDashboard() {
             </tr>
           </thead>
 
-          {/* --- TABLE BODY --- */}
           <tbody className="divide-y divide-gray-100 text-gray-700">
             {enrollments && enrollments.length > 0 ? (
               enrollments.map((enrollment) => {
-                // We extract the course object for easier access
                 const course = enrollment.course;
                 console.log("image url : ", course.imgUrl)
 
                 return (
                   <tr key={enrollment.id} className="hover:bg-gray-50 transition">
                     
-                    {/* Col 1: Course Info */}
                     <td className="p-6 flex items-center gap-4">
                       <img 
                         src={course.imgUrl} 
@@ -52,33 +47,30 @@ function StudentDashboard() {
                       <span className="font-medium text-gray-900">{course.title}</span>
                     </td>
 
-                    {/* Col 2: Duration (Placeholder) */}
                     <td className="p-6">
-                       {/* You can add a 'duration' column to your Course table later */}
                       <span>2h 40m</span> 
                     </td>
 
-                    {/* Col 3: Progress Bar (Placeholder Logic) */}
                     <td className="p-6 w-1/4">
                       <div className="flex flex-col gap-1">
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div 
                             className="bg-blue-600 h-2 rounded-full" 
-                            style={{ width: '40%' }} // Logic for % goes here later
+                            style={{ width: '40%' }} 
                           ></div>
                         </div>
                         <span className="text-xs text-gray-500">40% Complete</span>
                       </div>
                     </td>
 
-                    {/* Col 4: Action Button */}
                     <td className="p-6">
-                      <Link 
+                      <p className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition">Start Learning</p>
+                      {/* <Link 
                         to={`/course-player/${course.id}`}
                         className="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition"
                       >
                         Start Learning
-                      </Link>
+                      </Link> */}
                     </td>
 
                   </tr>

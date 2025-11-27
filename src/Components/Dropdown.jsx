@@ -3,6 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaRegEdit } from "react-icons/fa";
 import { FiSave } from "react-icons/fi";
+import { toast } from "react-toastify";
 import { useDeleteSectionMutation, useUpdateSectionMutation, useAddSectionMutation } from "../store/apiSlice";
 
 function Dropdown({ course_Id, id, title, subtitle, children, edit }) {
@@ -19,13 +20,13 @@ function Dropdown({ course_Id, id, title, subtitle, children, edit }) {
           const updatedSectionData = {
               id: id, 
               title: istitle,
-              subtitle: isSubtitle,
+              Subtitle: isSubtitle,
               course_id : course_Id
           };
           await updateSection(updatedSectionData).unwrap();
           
           setIsEditing(false); 
-          toast.success("Chapter updated successfully!");
+          toast.success("Section updated successfully!");
       } catch (error) {
           toast.error("Failed to update chapter. Check console.");
       }

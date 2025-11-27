@@ -5,13 +5,14 @@ import { useAuth } from "../Context/Authcontext";
 import { useState } from "react";
 import { GiCancel } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
-
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { FaUserGraduate } from "react-icons/fa";
 
 function Login(){
 
     const [error, setError] = useState("")
     const navigate = useNavigate()
-    const {register, handleSubmit, formState: {errors}, reset} = useForm()
+    const {register, handleSubmit, formState: {errors}, reset, setValue} = useForm()
     const {login, closeloginModal, OpenSignupModal} = useAuth()
     const loginUser = async (data) => {
         setError("")
@@ -29,13 +30,21 @@ function Login(){
         }
     }
 
-
+    const handleDemoLogin = (role) => {
+        if (role === 'teacher') {
+            setValue("email", "aryan456.rehla@gmail.com"); 
+            setValue("password", "Ar@180905");      
+        } else {
+            setValue("email", "aryan007.vns@gmail.com"); 
+            setValue("password", "Ar@180905");       
+        }
+    }
     return (
         <div className="h-full w-full fixed flex flex-row justify-center inset-0 items-center z-50">
-            <form action="" onSubmit={handleSubmit(loginUser)} className="h-3/4 w-1/4 flex flex-col gap-6 items-center bg-[#FFFFFF] p-5 rounded-2xl">
+            <form action="" onSubmit={handleSubmit(loginUser)} className="h-8/10 w-3/10 flex flex-col gap-6 items-center bg-[#FFFFFF] p-5 rounded-2xl">
                 <div className="h-1/8 w-full flex flex-col items-center gap-1">
-                <div className="w-full flex justify-end gap-23">
-                    <h1 className="text-[#212126] font-bold right-4">Sign in to LMS</h1>
+                <div className="w-full flex justify-end gap-30">
+                    <h1 className="text-[#212126] font-bold right-6">Sign in to LMS</h1>
                     <MdCancel onClick={closeloginModal} className="text-3xl cursor-pointer"/>
                 </div>
                     <p className="text-[#6B7280] text-[14px]">Welcome back! Please sign in to continue</p>
@@ -90,17 +99,36 @@ function Login(){
                 </div>
 
                 <button type="submit" className="w-9/10 h-8 bg-[#111820] text-amber-50">Continue</button>
+                <div className="w-full flex gap-3 mb-2">
+                    <button 
+                        type="button"
+                        onClick={() => handleDemoLogin('teacher')}
+                        className="flex-1 flex items-center justify-center gap-2 bg-blue-100 text-blue-700 py-2 rounded-lg hover:bg-blue-200 transition font-semibold text-sm"
+                    >
+                        <FaChalkboardTeacher /> Demo Teacher
+                    </button>
+                    <button 
+                        type="button"
+                        onClick={() => handleDemoLogin('student')}
+                        className="flex-1 flex items-center justify-center gap-2 bg-green-100 text-green-700 py-2 rounded-lg hover:bg-green-200 transition font-semibold text-sm"
+                    >
+                        <FaUserGraduate /> Demo Student
+                    </button>
+                </div>
                 {error && <p className="text-red-600 text-center">{error}</p>}
-                <hr className="border-none h-0.5 bg-gray-300 w-full" />
-                <p>Don't have an account? 
-                    <span onClick = {() => {
-                        closeloginModal();
-                        OpenSignupModal();
-                    }}
-                     className="font-semibold">
-                            Sign Up
-                    </span>
-                </p>
+
+                <div className="w-full gap-1 flex flex-col items-center">
+                    <hr className="border-none h-0.5 bg-gray-300 w-full" />
+                    <p>Don't have an account? 
+                        <span onClick = {() => {
+                            closeloginModal();
+                            OpenSignupModal();
+                        }}
+                        className="font-semibold cursor-pointer">
+                                Sign Up
+                        </span>
+                    </p>
+                </div>
             </form>
         </div>
     )

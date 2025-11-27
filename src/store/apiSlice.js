@@ -273,7 +273,7 @@ export const apiSlice = createApi({
             },
             providesTags: ['Enrollment'],
         }),
-        
+
         getEnrolledCourses: builder.query({
         async queryFn(userId) {
             try {

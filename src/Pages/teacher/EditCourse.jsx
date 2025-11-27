@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import SectionManager from '../../Components/SectionManager';
@@ -7,17 +7,19 @@ import {
   useGetCourseDetailQuery, 
   useUpdateCourseMutation,
   useGetChapterForSectionQuery,
-  useGetSectionsForCourseQuery 
+  useGetSectionsForCourseQuery,
+  useDeleteCourseMutation
 } from '../../store/apiSlice';
 import { uploadCourseImage } from '../../Services/storageService';
+import { useNavigate } from 'react-router-dom';
 
 function EditCourse() {
 
   const { courseId } = useParams(); 
-
+  const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   
- 
+  const [deleteCourse, {isLoading : isDeleting}] = useDeleteCourseMutation()
   const [updateCourse, { isLoading: isUpdating }] = useUpdateCourseMutation();
   const { data: course, isLoading : isCourseLoading } = useGetCourseDetailQuery(courseId);
 
@@ -56,6 +58,20 @@ function EditCourse() {
         toast.error('failed to add')
     }
   };
+
+  const deletethecourse = async () => {
+      try {
+        const {data, error} = await deleteCourse(courseId)
+
+        if(error) throw error
+        toast.success('succesfully deleted')
+        navigate('/teacher/mycourse')
+
+      } catch (error) {
+        console.log("failed to delete course :" , error)
+        toast.error('failed to delete')
+      }
+  }
 
   if (isCourseLoading) return <div>Loading course data...</div>;
 
@@ -101,16 +117,19 @@ function EditCourse() {
 
         <div className="h-9 w-3/4 mt-4 flex flex-row gap-2 justify-center items-center">
           <img 
-            src={course.imageUrl} 
+            src={course.imgUrl} 
             alt={course.title} 
-            className="h-16 w-full object-cover rounded" 
+            className="h-16 w-full object-contain rounded" 
           />
           
           <label className="font-semibold">Update Image:</label>
           <input type="file" accept="image/*" {...register("image")} />
         </div>
 
-        <div className="h-9 w-3/4 mt-2 text-[#FFFFFF] flex justify-end">
+        <div className="h-9 w-3/4 mt-2 gap-3 text-[#FFFFFF] flex justify-end">
+          <button onClick={deletethecourse} className="h-full w-1/4 border bg-[#2563EB]" disabled={isDeleting}>
+            {isDeleting ? "Deleting..." : "Delete"}
+          </button>
           <button type="submit" className="h-full w-1/4 border bg-[#2563EB]" disabled={isUpdating}>
             {isUpdating ? "Saving..." : "Save Changes"}
           </button>

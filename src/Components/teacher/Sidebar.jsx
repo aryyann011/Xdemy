@@ -29,7 +29,6 @@ function Sidebar() {
       <nav className="flex flex-col gap-2">
         {[
           { to: '/', icon: <IoReorderThreeOutline className='text-2xl'/>, text: "Home" },
-  { to: '/teacher/dashboard', icon: <img src="/image/home_icon.svg" className='h-5 w-5 left-5'/>, text: "Dashboard" },
 
   user?.user_metadata?.role === 'teacher'
     ? { to: '/teacher/mycourse', icon: <img src="/image/MyCourses.png" className='h-5 w-5'/>, text: "My Courses" }
