@@ -13,10 +13,11 @@ import Dropdown from './Components/Dropdown'
 import Sidebar from './Components/teacher/Sidebar'
 import EditCourse from './Pages/teacher/EditCourse'
 import "@fortawesome/fontawesome-free/css/all.css";
+import StudentSidebar from './Components/Student/StudenSidebar'
 
 function App() {
 
-  const {isloginModalOpen, isSignupModalOpen, user} = useAuth()
+  const {isloginModalOpen, isSignupModalOpen, isSidebarOpen, user} = useAuth()
   return (
     <div className='min-h-screen min-w-screen'>
       <div
@@ -26,8 +27,8 @@ function App() {
 >
         <Navbar />
         <main className='flex flex-row'>
-          {user ? <Sidebar/>
-                : ""}
+          {/* {isSidebarOpen && user && user.metadata === 'teacher' ? <Sidebar/> : ""} */}
+          {isSidebarOpen && user && user.user_metadata.role === 'student' ? <StudentSidebar/> : ""}
           <Outlet/>
         </main>
         <Footer />

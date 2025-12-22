@@ -2,21 +2,27 @@ import { supabase } from "../conf/conf";
 
 export class SupabaseService {
 
-    async createAccount({email, password}) {
-        try {
-            const { data, error } = await supabase.auth.signUp({
-                email: email,
-                password: password,
-            });
-
-            if (error) throw error;
-            return data;
-
-        } catch (error) {
-            console.error("Supabase signup error: ", error.message);
-            throw error;
+    async createAccount({ email, password }) {
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          role: "student"
         }
-    }
+      }
+    });
+
+    if (error) throw error;
+    return data;
+
+  } catch (error) {
+    console.error("Supabase signup error:", error.message);
+    throw error;
+  }
+}
+
 
     async login({email, password}) {
         try {

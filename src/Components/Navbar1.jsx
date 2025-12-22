@@ -16,12 +16,16 @@ function Navbar(){
         logout()
         navigate('/')
     }
+
+    // const checkUser = () => {
+    //     user?.user_metadata?.role === 'student' ? toggleSidebar() : "";
+    // }
     return (
         <>  
-        <nav className="min-h-25 sm:min-h-12 w-full flex flex-row relative items-center justify-around ">
-            <div onClick={() => toggleSidebar()}>
-                <IoReorderThreeOutline className='text-2xl'/>
-            </div>
+        <nav className="min-h-25 sm:min-h-12 w-full flex flex-row items-center justify-around ">
+            {user ? <div className="text-2xl cursor-pointer" onClick={() => toggleSidebar()}>
+                <IoReorderThreeOutline/>
+            </div> : ""}
             <Link to="/" className="flex items-center">
                <Edemy />
             </Link>

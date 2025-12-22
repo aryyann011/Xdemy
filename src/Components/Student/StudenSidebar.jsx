@@ -36,13 +36,13 @@ function StudentSidebar() {
               {[
         //   { to: '/', icon: <IoReorderThreeOutline className='text-2xl'/>, text: "Home" },
 
-     { to: '/mylearning', icon: <img src="/image/person_tick_icon.png" className='h-5 w-5'/>, 
+     { to: '/mylearning', icon: <img src="/image/person_tick_icon.png" className='w-5'/>, 
         text : "Enrolled Courses" },
 
   { to: '/courses', icon: <MdOutlineBallot className='text-[25px]' />, text: "All Courses" }
         ].map((element) => (
-                <Link key={element.text} to={element.to} className="mt-4">
-                   <h1 className="text-gray-400 uppercase font-bold text-sm mb-3">
+                <Link key={element.text} to={element.to} className="w-65 mt-4 flex items-center">
+                   <h1 className="text-gray-400 font-bold text-sm mb-3">
                      {element.text}
                    </h1>
                    <div>
