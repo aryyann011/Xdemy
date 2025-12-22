@@ -23,12 +23,14 @@ function Navbar(){
     return (
         <>  
         <nav className="min-h-25 sm:min-h-12 w-full flex flex-row items-center justify-around ">
-            {user ? <div className="text-2xl cursor-pointer" onClick={() => toggleSidebar()}>
-                <IoReorderThreeOutline/>
-            </div> : ""}
-            <Link to="/" className="flex items-center">
-               <Edemy />
-            </Link>
+            <div className="fixed flex items-center justify-around left-10 gap-6">
+                {user ? <div className="text-2xl cursor-pointer" onClick={() => toggleSidebar()}>
+                    <IoReorderThreeOutline/>
+                </div> : ""}
+                <Link to="/" className="flex items-center h-72">
+                <Edemy />
+                </Link>
+            </div>
 
             {user ? (<div className="h-8 w-1/4 absolute flex flex-row items-center justify-center gap-3 right-4">
                 {user.user_metadata?.role === 'teacher' ? <Link to="/teacher/addCourse"><span>Add Course</span></Link>

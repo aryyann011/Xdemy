@@ -13,7 +13,7 @@ function StudentSidebar() {
 
   return (
     <div className={`
-            fixed inset-y-0 left-0 z-50 bg-white border-r transition-all duration-300
+            fixed inset-y-0 left-0 z-50 bg-white border-r transition-all duration-500
             ${isSidebarOpen ? 'w-72' : 'w-0'} 
             md:static 
             ${!isSidebarOpen && 'md:hidden'}
