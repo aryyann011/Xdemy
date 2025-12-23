@@ -10,7 +10,7 @@ function TeacherLayout() {
     if(isLoading) return <h1>Loading....</h1>
   return (
     (user?.user_metadata?.role === 'teacher') 
-      ? <div className="flex">
+      ? <div>
       <Sidebar/>
       <div className="flex-1 p-10">
         <Outlet />

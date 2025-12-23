@@ -46,7 +46,7 @@ function Sidebar() {
                        onClick={() => toggleSidebar()} 
                        className={({ isActive }) => 
                          `flex items-center gap-4 pl-4 pt-3 pb-2.5 rounded-lg text-md m-2 
-                         ${isSidebarOpen ? "bg-[#ADEED9] text-black" : "text-gray-700 hover:bg-gray-100"}`
+                         ${isActive ? "bg-[#ADEED9] text-black" : "text-gray-700 hover:bg-gray-100"}`
                        }
                      >
                        <div>
