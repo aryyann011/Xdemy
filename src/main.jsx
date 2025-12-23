@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './Pages/Home.jsx'
 import Login from './Components/Login.jsx'
 import Signup from './Components/Signup.jsx'
@@ -42,6 +42,7 @@ const router = createBrowserRouter([
         element: <StudentLayout />,
         children: [
           // Note: No leading slashes here!
+          {path : '', element : <Home/>},
           {path : 'mylearning', element : <StudentDashboard/>},
         ]
       },
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
         element: <TeacherLayout />,
         children: [
           // Note: No leading slashes here!
-          {path : '', element : <Home/>},
+          {path : '', element : <Navigate to="dashboard" replace/>},
           { path: 'dashboard', element: <Dashboard /> }, 
           { path: 'addCourse', element: <AddCourse /> },
           { path: 'mycourse', element: <Mycourse /> },

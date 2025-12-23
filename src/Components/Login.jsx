@@ -24,9 +24,11 @@ function Login(){
 
                 const role = session.user?.user_metadata?.role
 
-                if(role === 'student')
-                navigate('student')
-                else navigate('teacher')
+                if (role === 'student') {
+                    navigate('/student'); // Leading slash is better here
+                } else {
+                    navigate('/teacher/dashboard');
+                }
             }
 
         }

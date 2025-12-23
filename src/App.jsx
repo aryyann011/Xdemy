@@ -26,9 +26,9 @@ function App() {
   }`}
 >
         <Navbar />
-        <main className='flex flex-row'>
+        <main>
           {/* {isSidebarOpen && user && user.metadata === 'teacher' ? <Sidebar/> : ""} */}
-          {user?.user_metadata?.role === "student" && <StudentSidebar />}
+          {/* {user?.user_metadata?.role === "student" && <StudentSidebar />} */}
           <Outlet/>
         </main>
         <Footer />

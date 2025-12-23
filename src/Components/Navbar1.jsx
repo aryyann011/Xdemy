@@ -34,7 +34,7 @@ function Navbar(){
             </button>
           )}
 
-          <Link to="/" className="flex items-center">
+          <Link to="" className="flex items-center">
             <Edemy />
           </Link>
         </div>
