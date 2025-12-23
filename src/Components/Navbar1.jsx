@@ -21,35 +21,62 @@ function Navbar(){
     //     user?.user_metadata?.role === 'student' ? toggleSidebar() : "";
     // }
     return (
-        <>  
-        <nav className="min-h-25 sm:min-h-12 w-full flex flex-row items-center justify-around ">
-            <div className="fixed flex items-center justify-around left-10 gap-6">
-                {user ? <div className="text-2xl cursor-pointer" onClick={() => toggleSidebar()}>
-                    <IoReorderThreeOutline/>
-                </div> : ""}
-                <Link to="/" className="flex items-center h-72">
-                <Edemy />
-                </Link>
-            </div>
+        <>
+        <nav className="fixed bg-stone-50 top-0 left-0 z-50 w-full h-14 border-b flex items-center justify-between px-6">
+        
+        <div className="flex items-center gap-3">
+          {user && (
+            <button
+              onClick={toggleSidebar}
+              className="text-2xl cursor-pointer"
+            >
+              <IoReorderThreeOutline />
+            </button>
+          )}
 
-            {user ? (<div className="h-8 w-1/4 absolute flex flex-row items-center justify-center gap-3 right-4">
-                {user.user_metadata?.role === 'teacher' ? <Link to="/teacher/addCourse"><span>Add Course</span></Link>
-                : ""}
-                {/* <span><Link to="/login">Login</Link></span> */}
-                <button onClick={logoutUser} className="h-full w-1/3 rounded-2xl bg-[#2563EB] text-[#FFFFFF] text-sm bottom-1.5 object-contain">
-                        Logout
-                    </button>
-            </div>) :
-            (<div className="h-8 w-1/4 absolute flex flex-row justify-center gap-3 right-4">
-                <span className="cursor-pointer" onClick={OpenloginModal}>Login</span>
-                    <button onClick={OpenSignupModal} className="h-full w-1/3 rounded-2xl bg-[#2563EB] text-[#FFFFFF] text-sm bottom-1.5 object-contain">
-                        Create Account
-                    </button>
-            </div>
-            )}
-        </nav>
-        <hr className="border-none h-0.5 bg-gray-300 w-full" />
-        </>
+          <Link to="/" className="flex items-center">
+            <Edemy />
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-4">
+          {user ? (
+            <>
+              {user.user_metadata?.role === "teacher" && (
+                <Link to="/teacher/addCourse" className="font-medium">
+                  Add Course
+                </Link>
+              )}
+
+              <button
+                onClick={logoutUser}
+                className="px-4 py-1.5 rounded-2xl bg-blue-600 text-white text-sm"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <span
+                className="cursor-pointer font-medium"
+                onClick={OpenloginModal}
+              >
+                Login
+              </span>
+
+              <button
+                onClick={OpenSignupModal}
+                className="px-4 py-1.5 rounded-2xl bg-blue-600 text-white text-sm"
+              >
+                Create Account
+              </button>
+            </>
+          )}
+        </div>
+      </nav>
+
+      <div className="h-14" />
+    </>
     )
 }
 

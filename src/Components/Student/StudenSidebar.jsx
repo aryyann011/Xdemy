@@ -16,7 +16,6 @@ function StudentSidebar() {
     fixed inset-y-0 left-0 z-50 w-72 bg-white border-r
     transform transition-transform duration-300 ease-in-out
     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-    md:static md:translate-x-0
   `}>
           <div className="h-full flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 pb-10">
             
@@ -30,22 +29,19 @@ function StudentSidebar() {
                 >
                     <X className="w-6 h-6" />
                 </button>
-            </div>
-    
+            </div>            
             <div className="p-4">
-              {[
-        //   { to: '/', icon: <IoReorderThreeOutline className='text-2xl'/>, text: "Home" },
 
+              {[
      { to: '/mylearning', icon: <img src="/image/person_tick_icon.png" className='w-5'/>, 
         text : "Enrolled Courses" },
-
   { to: '/courses', icon: <MdOutlineBallot className='text-[25px]' />, text: "All Courses" }
         ].map((element) => (
-                <Link key={element.text} to={element.to} className="w-65 mt-4 flex items-center">
-                   <h1 className="text-gray-400 font-bold text-sm mb-3">
+                <Link key={element.text} to={element.to} className="w-65 mt-4 flex justify-start items-center">
+                   <h1 className="text-gray-400 font-bold text-[18px] mb-3">
                      {element.text}
-                   </h1>
-                   <div>
+                   </h1>    
+                   <div className='fixed right-'>
                     {element.icon}
                    </div>
                 </Link>
