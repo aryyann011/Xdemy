@@ -21,7 +21,12 @@ function Login(){
 
             if(session){
                 closeloginModal()
+
+                const role = session.user?.user_metadata?.role
+
+                if(role === 'student')
                 navigate('/')
+                else navigate('/teacher')
             }
 
         }

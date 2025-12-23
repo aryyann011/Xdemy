@@ -44,13 +44,14 @@ const router = createBrowserRouter([
       //   element :<ProtectedRoute/>,
       //   children : [
       {
-        path : '/teacher',
-        element : <TeacherLayout/>,
-        children : [
-          {path : '/teacher/dashboard', element : <Dashboard/>},
-          {path : '/teacher/addCourse', element : <AddCourse/>},
-          {path : '/teacher/mycourse', element : <Mycourse/>},
-          {path : '/teacher/edit-course/:courseId', element : <EditCourse/>}
+        path: '/teacher',
+        element: <TeacherLayout />,
+        children: [
+          // Note: No leading slashes here!
+          { path: 'dashboard', element: <Dashboard /> }, 
+          { path: 'addCourse', element: <AddCourse /> },
+          { path: 'mycourse', element: <Mycourse /> },
+          { path: 'edit-course/:courseId', element: <EditCourse /> }
         ]
       }
       //   ]
