@@ -52,63 +52,68 @@ function AddCourse() {
     }
 
   return (
-    <form onSubmit={handleSubmit(AddInfo)} className="h-screen w-screen m-6 flex flex-col gap-6">
-      <div className="w-3/10 h-15 flex flex-col justify-around">
+    <form onSubmit={handleSubmit(AddInfo)} className="flex flex-col gap-6 max-w-3xl">
+      
+      <div className="w-[50%] flex flex-col gap-2">
         <label htmlFor="title" className="font-semibold">Title</label>
-        <input type="text" 
-            id="title"
-            className="w-full h-8 p-4 mt-2 border"
-            placeholder="Enter the title of the course"
-            {...register("title", {
-                required : true, 
-            })}
-        />
-        {errors.title && <span className="text-red-500 text-sm mt-1">{errors.title.message}</span>}
-        {isError && <div className="text-red-600 bg-red-100 p-3 rounded">
-                        Failed to add course. Please try again.
-                    </div>}
-      </div>
-      <div className="w-3/10 h-20 flex flex-col gap-2">
-        <label htmlFor="description" className="font-semibold">Description</label>
-        <input type="text"
-        id="description"
-        className="h-15 w-full pl-4 pt-1 border"
-        placeholder="Give the description of the course"
-        {...register("description", {
-            required : true
-        })} />
-        {errors.description && <span className="text-red-500 text-sm mt-1">{errors.description.message}</span>}
-      </div>
-      <div className="w-3/10 h-15 flex flex-col gap-2">
-        <label htmlFor="price">Course Price</label>
-        <input type="text"
-        id="price"
-        className="h-7 w-full p-4 border"
-        placeholder="Enter Price"
-        {...register("price", {
-            required : true
-        })} />
-        {errors.price && <span className="text-red-500 text-sm mt-1">{errors.price.message}</span>}
-      </div>
-      <div className="w-3/10 h-9 mt-4 flex flex-row gap-2 justify-center items-center">
-        <label className="font-semibold">Upload an Image:</label>
         <input
-            type="file"
-            accept="image/*"
-            className="h-full border p-2 rounded flex justify-center items-center"
-            {...register("image", {
-              required : true
-            })}
+            type="text"
+            id="title"
+            className="w-full p-2 border"
+            placeholder="Enter the title of the course"
+            {...register("title", { required : true })}
         />
-        {errors.image && <span className="text-red-500 text-sm mt-1">{errors.image.message}</span>}
+        {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
+        {isError && (
+          <div className="text-red-600 bg-red-100 p-3 rounded">
+            Failed to add course. Please try again.
+          </div>
+        )}
       </div>
-      <div className="h-9 w-3/10 mt-2 text-[#FFFFFF] flex justify-end">
-        <button type="submit" className="h-full w-1/4 border bg-[#2563EB]">
+
+      <div className="w-[50%] flex flex-col gap-2">
+        <label htmlFor="description" className="font-semibold">Description</label>
+        <input
+          type="text"
+          id="description"
+          className="w-full p-2 border"
+          placeholder="Give the description of the course"
+          {...register("description", { required : true })}
+        />
+        {errors.description && <span className="text-red-500 text-sm">{errors.description.message}</span>}
+      </div>
+
+      <div className="w-[50%] flex flex-col gap-2">
+        <label htmlFor="price">Course Price</label>
+        <input
+          type="text"
+          id="price"
+          className="w-full p-2 border"
+          placeholder="Enter Price"
+          {...register("price", { required : true })}
+        />
+        {errors.price && <span className="text-red-500 text-sm">{errors.price.message}</span>}
+      </div>
+
+      <div className="w-[50%] flex items-center gap-3">
+        <label className="font-semibold whitespace-nowrap">Upload an Image:</label>
+        <input
+          type="file"
+          accept="image/*"
+          className="flex-1 border p-2 rounded"
+          {...register("image", { required : true })}
+        />
+        {errors.image && <span className="text-red-500 text-sm">{errors.image.message}</span>}
+      </div>
+
+      <div className="w-[50%] flex justify-end">
+        <button type="submit" className="px-6 py-2 bg-[#2563EB] text-white">
           {isLoading ? "Submitting..." : "Add Course"}
         </button>
       </div>
+
     </form>
   )
 }
 
-export default AddCourse
+export default AddCourse;

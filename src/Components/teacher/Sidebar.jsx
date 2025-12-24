@@ -15,9 +15,9 @@ function Sidebar() {
 
   return (
     <div className={`
-      fixed inset-y-0 left-0 z-50 w-64 bg-white border-r
-      transform transition-transform duration-300 ease-in-out
-      ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      h-screen bg-white border-r
+      transform duration-300 ease-in-out
+      ${isSidebarOpen ? 'w-64' : 'w-0'}
     `}>
           <div className="h-full flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 pb-10">
             
@@ -43,7 +43,7 @@ function Sidebar() {
                      <NavLink 
                        key={link.name}
                        to={`${link.path}`}
-                       onClick={() => toggleSidebar()} 
+                      //  onClick={() => toggleSidebar()} 
                        className={({ isActive }) => 
                          `flex items-center gap-4 pl-4 pt-3 pb-2.5 rounded-lg text-md m-2 
                          ${isActive ? "bg-[#ADEED9] text-black" : "text-gray-700 hover:bg-gray-100"}`
