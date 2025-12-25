@@ -17,6 +17,17 @@ function Navbar(){
         navigate('/')
     }
 
+    const getHomePath = () => {
+      if (!user) return "/"; 
+      
+      const role = user.user_metadata?.role;
+      
+      if (role === "teacher") return "/teacher/dashboard";
+      if (role === "student") return "/student";
+      
+      return "/"; 
+    };
+
     // const checkUser = () => {
     //     user?.user_metadata?.role === 'student' ? toggleSidebar() : "";
     // }
@@ -34,7 +45,7 @@ function Navbar(){
             </button>
           )}
 
-          <Link to="" className="flex items-center">
+          <Link to={getHomePath()} className="flex items-center">
             <Edemy />
           </Link>
         </div>

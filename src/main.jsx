@@ -22,11 +22,11 @@ import StudentLayout from './layout/StudentLayout.jsx'
 
 const router = createBrowserRouter([
   {
-    path : '/',
+    path : '',
     element : <App/>,
     children : [
       {
-        path : '/',
+        path : '',
         element : <Home/>
       },
       {
@@ -41,7 +41,6 @@ const router = createBrowserRouter([
         path : 'student',
         element: <StudentLayout />,
         children: [
-          // Note: No leading slashes here!
           {path : '', element : <Home/>},
           {path : 'mylearning', element : <StudentDashboard/>},
           { path : 'courses', element : <Browse/>},
@@ -52,7 +51,6 @@ const router = createBrowserRouter([
         path: 'teacher',
         element: <TeacherLayout />,
         children: [
-          // Note: No leading slashes here!
           {path : '', element : <Navigate to="dashboard" replace/>},
           { path: 'dashboard', element: <Dashboard /> }, 
           { path: 'addCourse', element: <AddCourse /> },
