@@ -20,7 +20,7 @@ import EditCourse from './Pages/teacher/EditCourse.jsx'
 import StudentDashboard from './Pages/Student/Dashboard.jsx'
 import StudentLayout from './layout/StudentLayout.jsx'
 import Studentlist from './Pages/teacher/Studentlist'
-import Calendar from './Pages/teacher/Calendar'
+import Calendar from './Pages/teacher/Apps/Calendar'
 
 const router = createBrowserRouter([
   {

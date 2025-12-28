@@ -22,6 +22,7 @@ const Calendar = () => {
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         events={events}
+        eventDisplay="block"
         height="650px"
         headerToolbar={{
           left: 'prev,next today',
