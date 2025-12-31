@@ -61,14 +61,14 @@ export const sidebarLinks = [
   {
     title: "CHARTS",
     links: [
-      { name: "Line", path: "/teacher/charts/line", icon: <TrendingUp/> },
-      { name: "Area", path: "/teacher/charts/area", icon: <AreaChart/> },
-      { name: "Bar", path: "/teacher/charts/bar", icon: <BarChart3/>},
-      { name: "Pie", path: "/teacher/charts/pie", icon: <PieChart/> },
-      { name: "Financial", path: "/teacher/charts/financial", icon: <CandlestickChart/> },
-      { name: "Color Mapping", path: "/teacher/charts/color-mapping", icon: <Layers/> },
-      { name: "Pyramid", path: "/teacher/charts/pyramid", icon: <Triangle/> },
-      { name: "Stacked", path: "/teacher/charts/stacked", icon: <AlignVerticalSpaceAround/> },
+      { name: "Line", path: "/teacher/line", icon: <TrendingUp/> },
+      { name: "Area", path: "/teacher/area", icon: <AreaChart/> },
+      { name: "Bar", path: "/teacher/bar", icon: <BarChart3/>},
+      { name: "Pie", path: "/teacher/pie", icon: <PieChart/> },
+      { name: "Financial", path: "/teacher/financial", icon: <CandlestickChart/> },
+      { name: "Color Mapping", path: "/teacher/color-mapping", icon: <Layers/> },
+      { name: "Pyramid", path: "/teacher/pyramid", icon: <Triangle/> },
+      { name: "Stacked", path: "/teacher/stacked", icon: <AlignVerticalSpaceAround/> },
     ],
   },
 ];
@@ -758,13 +758,13 @@ export const scheduleData = [
 // ----------------------------------------------------------------------
 
 export const lineChartData = [
-  { x: '2005', CourseA: 21, CourseB: 28, CourseC: 10 },
-  { x: '2006', CourseA: 24, CourseB: 44, CourseC: 20 },
-  { x: '2007', CourseA: 36, CourseB: 48, CourseC: 30 },
-  { x: '2008', CourseA: 38, CourseB: 50, CourseC: 39 },
-  { x: '2009', CourseA: 54, CourseB: 66, CourseC: 50 },
-  { x: '2010', CourseA: 57, CourseB: 78, CourseC: 70 },
-  { x: '2011', CourseA: 70, CourseB: 84, CourseC: 100 },
+  { x: '2005', ReactJS: 21, Python: 28, NodeJS: 10 },
+  { x: '2006', ReactJS: 24, Python: 44, NodeJS: 20 },
+  { x: '2007', ReactJS: 36, Python: 48, NodeJS: 30 },
+  { x: '2008', ReactJS: 38, Python: 50, NodeJS: 39 },
+  { x: '2009', ReactJS: 54, Python: 66, NodeJS: 50 },
+  { x: '2010', ReactJS: 57, Python: 78, NodeJS: 70 },
+  { x: '2011', ReactJS: 70, Python: 84, NodeJS: 100 },
 ];
 
 export const areaChartData = [
