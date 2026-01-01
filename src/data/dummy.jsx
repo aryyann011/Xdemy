@@ -38,7 +38,6 @@ export const sidebarLinks = [
     title: "DASHBOARD",
     links: [
       { name: "Overview", path: "/teacher/dashboard", icon: <TrendingUp/> },
-      { name: "Analytics", path: "/teacher/analytics", icon: <AreaChart/> },
     ],
   },
   {
@@ -66,9 +65,8 @@ export const sidebarLinks = [
       { name: "Students Progress", path: "/teacher/bar", icon: <BarChart3/>},
       { name: "Course Revenue", path: "/teacher/pie", icon: <PieChart/> },
       { name: "Financial", path: "/teacher/financial", icon: <CandlestickChart/> },
-      { name: "Color Mapping", path: "/teacher/color-mapping", icon: <Layers/> },
-      { name: "Pyramid", path: "/teacher/pyramid", icon: <Triangle/> },
-      { name: "Stacked", path: "/teacher/stacked", icon: <AlignVerticalSpaceAround/> },
+      { name: "Results", path: "/teacher/color-mapping", icon: <Layers/> },
+      { name: "Conversions", path: "/teacher/pyramid", icon: <Triangle/> },
     ],
   },
 ];
@@ -964,27 +962,18 @@ export const ColorMappingPrimaryYAxis = {
 };
 
 export const colorMappingData = [
-  [
-    { x: 'Jan', y: 6.96 },
-    { x: 'Feb', y: 8.9 },
-    { x: 'Mar', y: 12 },
-    { x: 'Apr', y: 17.5 },
-    { x: 'May', y: 22.1 },
-    { x: 'June', y: 25 },
-    { x: 'July', y: 29.4 },
-    { x: 'Aug', y: 29.6 },
-    { x: 'Sep', y: 25.8 },
-    { x: 'Oct', y: 21.1 },
-    { x: 'Nov', y: 15.5 },
-    { x: 'Dec', y: 9.9 },
-  ],
-  ['#FFFF99'],
-  ['#FFA500'],
-  ['#FF4040'],
+  { x: 'Student A', y: 45 }, 
+  { x: 'Student B', y: 85 }, 
+  { x: 'Student C', y: 65 }, 
+  { x: 'Student D', y: 30 }, 
+  { x: 'Student E', y: 92 }, 
+  { x: 'Student F', y: 55 }, 
+  { x: 'Student G', y: 78 }, 
 ];
 
-export const rangeColorMapping = [
-  { label: '1°C to 10°C', start: '1', end: '10', colors: colorMappingData[1] },
-  { label: '11°C to 20°C', start: '11', end: '20', colors: colorMappingData[2] },
-  { label: '21°C to 30°C', start: '21', end: '30', colors: colorMappingData[3] },
+export const pyramidData = [
+  { name: 'Site Visitors', value: 5000, fill: '#eee' },
+  { name: 'Viewed Course', value: 3500, fill: '#03C9D7' },
+  { name: 'Added to Cart', value: 1200, fill: '#7352FF' },
+  { name: 'Purchased', value: 450, fill: '#FF5C8E' },     
 ];

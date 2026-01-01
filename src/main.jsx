@@ -28,6 +28,8 @@ import Areas from './Pages/teacher/Charts/Area'
 import Bars from './Pages/teacher/Charts/Bar'
 import PiePage from './Pages/teacher/Charts/Pie'
 import Financial from './Pages/teacher/Charts/Financial'
+import ColorMapping from './Pages/teacher/Charts/ColorMapping'
+import Pyramid from './Pages/teacher/Charts/Pyramid'
 
 const router = createBrowserRouter([
   {
@@ -73,7 +75,9 @@ const router = createBrowserRouter([
           {path : 'area', element : <Areas/>},
           {path : 'bar', element : <Bars/>},
           {path : 'pie', element : <PiePage/>},
-          {path : 'financial', element: <Financial/>}
+          {path : 'financial', element: <Financial/>},
+          {path : 'color-mapping', element : <ColorMapping/>},
+          {path : 'pyramid', element : <Pyramid/>}
         ]
       }
       //   ]

@@ -19,7 +19,6 @@ const Financial = () => {
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid stroke="#f5f5f5" />
-            
             <XAxis 
               dataKey="x" 
               scale="point" 
@@ -36,7 +35,7 @@ const Financial = () => {
               formatter={(value) => `$${value.toLocaleString()}`}
               contentStyle={{ backgroundColor: '#fff', borderRadius: '10px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
             />
-            
+
             <Legend />
 
             <Bar 
