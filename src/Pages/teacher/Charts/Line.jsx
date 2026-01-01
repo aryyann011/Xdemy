@@ -4,7 +4,6 @@ import { lineChartData } from '@/data/dummy'
 const Lines= () => {
   return (
     <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-gray-800 rounded-3xl drop-shadow-xl">
-
       <div className="mb-10">
         <p className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
           Revenue Trends
