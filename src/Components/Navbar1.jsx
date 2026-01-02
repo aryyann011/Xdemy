@@ -51,10 +51,10 @@ function Navbar(){
           {user ? (
             <>
               <div className="flex justify-around gap-6">
-                {(user?.user_metadata?.role === 'student') ? <ShoppingCart onClick={() => handleClick("cart")}/> : ""}
-                {(user?.user_metadata?.role === 'teacher') ? <MessageCircle onClick={() => handleClick("chat")}/> : ""}
-                <Bell onClick={() => handleClick("notifications")}/>
-                <User onClick={() => handleClick("profile")}/>
+                {(user?.user_metadata?.role === 'student') ? <ShoppingCart onClick={() => handleClick("cart")} className="cursor-pointer"/> : ""}
+                {(user?.user_metadata?.role === 'teacher') ? <MessageCircle onClick={() => handleClick("chat")} className="cursor-pointer"/> : ""}
+                {(user?.user_metadata?.role === 'teacher') ? <Bell onClick={() => handleClick("notifications")} className="cursor-pointer"/> : ""}
+                <User onClick={() => handleClick("profile")} className="cursor-pointer"/>
               </div>
             </>
           ) : (

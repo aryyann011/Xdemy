@@ -52,7 +52,7 @@ function AddCourse() {
     }
 
   return (
-    <form onSubmit={handleSubmit(AddInfo)} className="flex flex-col gap-6 max-w-3xl">
+    <form onSubmit={handleSubmit(AddInfo)} className="flex flex-col items-center gap-6 max-w-3xl">
       
       <div className="w-[50%] flex flex-col gap-2">
         <label htmlFor="title" className="font-semibold">Title</label>

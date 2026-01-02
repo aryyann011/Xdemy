@@ -65,45 +65,45 @@ function Browse() {
             // </Link>
             <div key={course.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
                         
-                        <Link to={`CourseDetail/${course.id}`} className="h-40 w-full bg-gray-100 block">
-                           <img 
-                             className="w-full h-full object-contain" 
-                             src={course.imgUrl || "/image/img1.png"} 
-                             alt={course.title} 
-                           />
-                        </Link>
-            
-                        <div className="p-4 flex flex-col flex-grow">
-                            <Link to={`CourseDetail/${course.id}`}>
-                              <h2 className="text-lg font-bold text-gray-900 line-clamp-2 mb-2 hover:text-blue-600 transition">
-                                {course.title}
-                              </h2>
+              <Link to={`/student/CourseDetail/${course.id}`} className="h-40 w-full bg-gray-100 block">
+                  <img 
+                    className="w-full h-full object-contain" 
+                    src={course.imgUrl || "/image/img1.png"} 
+                    alt={course.title} 
+                  />
+              </Link>
+  
+              <div className="p-4 flex flex-col flex-grow">
+                  <Link to={`/student/CourseDetail/${course.id}`}>
+                    <h2 className="text-lg font-bold text-gray-900 line-clamp-2 mb-2 hover:text-blue-600 transition">
+                      {course.title}
+                    </h2>
+                  </Link>
+                  
+                  <p className="text-sm text-gray-500 line-clamp-2 mb-4 flex-grow">
+                      {course.description}
+                  </p>
+  
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                      <span className="text-lg font-bold text-gray-900">${course.price}</span>
+                      
+                      <div className="flex gap-2">
+                            <Link 
+                              to={`/student/CourseDetail/${course.id}`}
+                              className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition"
+                            >
+                              View
                             </Link>
-                            
-                            <p className="text-sm text-gray-500 line-clamp-2 mb-4 flex-grow">
-                               {course.description}
-                            </p>
-            
-                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                                <span className="text-lg font-bold text-gray-900">${course.price}</span>
-                                
-                                <div className="flex gap-2">
-                                     <Link 
-                                        to={`CourseDetail/${course.id}`}
-                                        className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition"
-                                     >
-                                        View
-                                     </Link>
-                                     {/* <Link 
-                                        to={`/teacher/edit-course/${course.id}`}
-                                        className="px-3 py-1.5 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700 transition"
-                                     >
-                                        Edit
-                                     </Link> */}
-                                </div>
-                            </div>
-                        </div>
+                            {/* <Link 
+                              to={`/teacher/edit-course/${course.id}`}
+                              className="px-3 py-1.5 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700 transition"
+                            >
+                              Edit
+                            </Link> */}
                       </div>
+                  </div>
+              </div>
+            </div>
         )})}
       </div>
     </div>

@@ -26,7 +26,7 @@ function CourseDetail() {
   const { 
     data: isEnrolled, 
     isLoading: isCheckingEnrollment,
-    error: enrollmentError // <--- GET THIS ERROR
+    error: enrollmentError 
   } = useCheckEnrollmentQuery(
     { courseId, userId: user?.id }, 
     { skip: !user } 
@@ -100,7 +100,6 @@ function CourseDetail() {
             </div>
           </div>
 
-          {/* Course Description Section */}
           <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Description</h2>
             <div className="prose text-gray-700">

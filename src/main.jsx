@@ -54,7 +54,8 @@ const router = createBrowserRouter([
         children: [
           {path : '', element : <Home/>},
           {path : 'mylearning', element : <StudentDashboard/>},
-          { path : 'courses', element : <Browse/>},
+          {path : 'courses', element : <Browse/>},
+          {path : 'CourseDetail/:courseId', element : <CourseDetail/>}
         ]
       },
       
@@ -77,7 +78,8 @@ const router = createBrowserRouter([
           {path : 'pie', element : <PiePage/>},
           {path : 'financial', element: <Financial/>},
           {path : 'color-mapping', element : <ColorMapping/>},
-          {path : 'pyramid', element : <Pyramid/>}
+          {path : 'pyramid', element : <Pyramid/>},
+          { path : 'CourseDetail/:courseId', element : <CourseDetail/> },
         ]
       }
       //   ]

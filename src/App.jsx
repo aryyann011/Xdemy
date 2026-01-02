@@ -44,7 +44,7 @@ function App() {
 
             {isClicked.cart && (user?.user_metadata?.role === 'student') ? <Cart /> : ""}
             {isClicked.chat && (user?.user_metadata?.role === 'teacher') ? <Chat /> : ""}
-            {isClicked.notifications && <Notifications />}
+            {isClicked.notifications && (user?.user_metadata?.role === 'teacher') ? <Notifications /> : ""}
             {isClicked.profile && <Profile />}
           </>
         )}
