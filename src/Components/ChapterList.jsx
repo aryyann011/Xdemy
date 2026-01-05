@@ -68,7 +68,7 @@ function ChapterList({sectionId: sectionId, edit}){
         }
     };
 
-    if (isChaptertloading) return <div>Loading Chapters...</div>;
+    if (isChaptertloading) return <div className='min-h-screen'>Loading Chapters...</div>;
 
 
     return (

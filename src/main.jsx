@@ -31,6 +31,7 @@ import Financial from './Pages/teacher/Charts/Financial'
 import ColorMapping from './Pages/teacher/Charts/ColorMapping'
 import Pyramid from './Pages/teacher/Charts/Pyramid'
 import RoleRedirect from './Routes/RoleRedirect'
+import PublicLayout from './layout/PublicLayout'
 
 const router = createBrowserRouter([
   {
@@ -38,24 +39,14 @@ const router = createBrowserRouter([
     element : <App/>,
     children : [
       {
-        path : '',
-        element : <RoleRedirect/>
-      },
-      {
-        path: 'home',
-        element: <RoleRedirect />
-      },
-      {
-        path: 'landing',
-        element: <Home />
-      },
-      {
-        path : 'CourseDetail/:courseId',
-        element : <CourseDetail/>
-      },
-      {
-        path : 'courses',
-        element : <Browse/>
+        element: <PublicLayout />,
+        children: [
+          { path: "", element: <RoleRedirect /> },
+          { path: "home", element: <RoleRedirect /> },
+          { path: "landing", element: <Home /> },
+          { path: "courses", element: <Browse /> },
+          { path: "CourseDetail/:courseId", element: <CourseDetail /> },
+        ],
       },
       {
         path : 'student',

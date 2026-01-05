@@ -6,7 +6,7 @@ function Browse() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery();
 
   if (isLoading) {
-    return <h1>Loading the page...</h1>;
+    return <div className="min-h-screen">Loading the page...</div>;
   }
 
   if (isError) {

@@ -1,3 +1,4 @@
+import Footer from "@/Components/Footer";
 import React from "react";
 import { Link } from "react-router-dom";
 function Home() {
@@ -302,6 +303,7 @@ function Home() {
           </div>
         </div>
       </div>
+      {/* <Footer/> */}
     </div>
   );
 }

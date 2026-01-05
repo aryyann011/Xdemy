@@ -10,7 +10,7 @@ function StudentDashboard() {
     skip: !user
   });
 
-  if (isLoading) return <div className="p-10 text-center">Loading your courses...</div>;
+  if (isLoading) return <div className="p-10 text-center min-h-screen">Loading your courses...</div>;
 
   return (
     <div className="w-3/4 mx-auto p-6 lg:p-10">

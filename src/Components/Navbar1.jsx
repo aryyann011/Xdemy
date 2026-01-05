@@ -20,7 +20,7 @@ function Navbar(){
       const role = user.user_metadata?.role;
       
       if (role === "teacher") return "/teacher/dashboard";
-      if (role === "student") return "/student";
+      if (role === "student") return "/student/home";
       
       return "/"; 
     };
@@ -30,7 +30,7 @@ function Navbar(){
     // }
     return (
         <>
-        <nav className="fixed bg-stone-50 top-0 left-0 w-full h-14 border-b flex items-center justify-between px-6">
+        <nav className="bg-stone-50 top-0 left-0 w-full h-14 border-b flex items-center justify-between px-6">
         
         <div className="flex items-center gap-3">
           {user && (

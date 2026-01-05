@@ -24,15 +24,13 @@ function App() {
   const {isloginModalOpen, isSignupModalOpen, isSidebarOpen, user, isClicked, handleClick} = useAuth()
   
   return (
-    <div className='min-h-screen min-w-screen'>
+    <div className="w-full">
       <div
-  className={`min-h-screen w-screen bg-linear-to-b from-slate-50 to-[#FFFFFF] 
-  overflow-hidden ${
+  className={`w-full bg-linear-to-b from-slate-50 to-[#FFFFFF] ${
     isloginModalOpen || isSignupModalOpen ? "blur-sm" : ""
   }`}
 >
 
-        <Navbar />
         {user && (
           <>
             {/* {isClicked.cart && (
@@ -54,10 +52,9 @@ function App() {
           {/* {user?.user_metadata?.role === "student" && <StudentSidebar />} */}
           <Outlet/>
         </main>
-        <Footer />
         <ToastContainer
-        position="bottom-right" // You can change the position
-        autoClose={3000} // Hide after 3 seconds
+        position="bottom-right"
+        autoClose={3000} 
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

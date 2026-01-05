@@ -9,7 +9,7 @@ function Dashboard() {
     skip: !user,
   });
 
-  if (isLoading) return <div className="p-10 text-center">Loading dashboard...</div>;
+  if (isLoading) return <div className="p-10 text-center min-h-screen">Loading dashboard...</div>;
 
   const totalCourses = courses?.length || 0;
   const totalEnrollments = courses ? courses.length * 12 : 0; 

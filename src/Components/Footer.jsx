@@ -3,7 +3,7 @@ import Edemy from "./Edemy";
 
 function Footer() {
   return (
-    <div className="h-50 w-full bg-[#111820] flex flex-row items-end bottom-0 justify-around text-[#FFFFFFCC] mt-20 text-sm font-inter">
+    <div className="h-48 w-full bg-[#111820] flex flex-row items-end bottom-0 justify-around text-[#FFFFFFCC] mt-20 text-sm font-inter">
       <div className="h-full w-1/4 flex flex-col ml-15">
         <div className="h-1/4 relative">
           <Edemy />

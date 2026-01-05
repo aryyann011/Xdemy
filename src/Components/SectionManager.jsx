@@ -35,7 +35,7 @@ function SectionManager({courseId}) {
         }
     };
 
-    if(isSectionLoading) return <div>loading section.....</div>
+    if(isSectionLoading) return <div className='min-h-screen'>loading section.....</div>
 
   return (
     <div className='h-full w-3/4 m-6'>
