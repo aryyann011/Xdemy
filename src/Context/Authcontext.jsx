@@ -41,6 +41,30 @@ export function Authprovider({children}){
     const [isClicked, setIsClicked] = useState(initialState);
     const [screenSize, setScreenSize] = useState(undefined);
 
+    const [currentMode, setCurrentMode] = useState('Light');
+    const [currentColor, setCurrentColor] = useState('#F8FAFC'); 
+    const [themeSettings, setThemeSettings] = useState(false);
+
+    const setMode = (e) => {
+        const mode = e.target.value;
+        setCurrentMode(mode);
+        localStorage.setItem('themeMode', mode);
+        setThemeSettings(false);
+    };
+
+    const setColor = (color) => {
+        setCurrentColor(color);
+        localStorage.setItem('colorMode', color);
+        setThemeSettings(false);
+    };
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('themeMode');
+        const savedColor = localStorage.getItem('colorMode');
+        if (savedTheme) setCurrentMode(savedTheme);
+        if (savedColor) setCurrentColor(savedColor);
+    }, []);
+
     const handleClick = (clicked) => {
         setIsClicked((prev) => ({
         ...initialState,
@@ -58,6 +82,13 @@ export function Authprovider({children}){
         isClicked,
         setIsClicked,
         handleClick,
+
+        currentMode, setCurrentMode,
+        currentColor, setCurrentColor,
+        themeSettings, setThemeSettings,
+        setMode, setColor,
+        screenSize, setScreenSize,
+
         signup: supabaseService.createAccount,
         login: supabaseService.login,
         logout: supabaseService.logout,

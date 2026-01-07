@@ -6,12 +6,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { Bell, Menu, ShoppingCart, MessageCircle, User } from "lucide-react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 function Navbar(){
 
     const [islogged, setIslogged] = useState(false)
-    const {user, logout, OpenloginModal, OpenSignupModal, toggleSidebar, handleClick} = useAuth()
+    const {user, logout, OpenloginModal, OpenSignupModal, toggleSidebar, handleClick, currentMode, setMode} = useAuth()
 
+    const toggleTheme = () => {
+      const newMode = currentMode === 'Light' ? 'Dark' : 'Light';
+      setMode({ target: { value: newMode } });
+    };
     const navigate = useNavigate()
 
     const getHomePath = () => {
@@ -50,7 +55,15 @@ function Navbar(){
         <div className="flex items-center gap-4">
           {user ? (
             <>
-              <div className="flex justify-around gap-6">
+              <div className="flex justify-around items-center gap-6">
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="text-2xl p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  style={{ color: currentMode === 'Dark' ? '#fbbf24' : '#4b5563' }} // Yellow for Sun, Gray for Moon
+                >
+                  {currentMode === 'Dark' ? <MdLightMode /> : <MdDarkMode />}
+                </button>
                 {(user?.user_metadata?.role === 'student') ? <ShoppingCart onClick={() => handleClick("cart")} className="cursor-pointer"/> : ""}
                 {(user?.user_metadata?.role === 'teacher') ? <MessageCircle onClick={() => handleClick("chat")} className="cursor-pointer"/> : ""}
                 {(user?.user_metadata?.role === 'teacher') ? <Bell onClick={() => handleClick("notifications")} className="cursor-pointer"/> : ""}
@@ -59,6 +72,14 @@ function Navbar(){
             </>
           ) : (
             <>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="text-2xl p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              style={{ color: currentMode === 'Dark' ? '#fbbf24' : '#4b5563' }} // Yellow for Sun, Gray for Moon
+            >
+              {currentMode === 'Dark' ? <MdLightMode /> : <MdDarkMode />}
+            </button>
               <span
                 className="cursor-pointer font-medium"
                 onClick={OpenloginModal}

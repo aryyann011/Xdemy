@@ -21,10 +21,11 @@ import Notifications from './Components/Notifications'
 
 function App() {
 
-  const {isloginModalOpen, isSignupModalOpen, isSidebarOpen, user, isClicked, handleClick} = useAuth()
+  const {isloginModalOpen, isSignupModalOpen, isSidebarOpen, user, isClicked, handleClick, currentMode} = useAuth()
   
   return (
-    <div className="w-full">
+    <div className={currentMode === 'Dark' ? 'dark' : ''}>
+      <div className="w-full">
       <div
   className={`w-full bg-linear-to-b from-slate-50 to-[#FFFFFF] ${
     isloginModalOpen || isSignupModalOpen ? "blur-sm" : ""
@@ -66,6 +67,7 @@ function App() {
       </div>
         {isloginModalOpen && <Login/>}
         {isSignupModalOpen && <Signup/>}
+    </div>
     </div>
   )
 }
