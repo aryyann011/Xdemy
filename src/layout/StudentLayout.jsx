@@ -18,7 +18,7 @@ console.log("Role found:", user?.user_metadata?.role);
         {(user?.user_metadata?.role === 'student') 
         ? (<div className="flex h-screen w-full overflow-hidden">
         <StudentSidebar/>
-        <div className="flex-1 overflow-y-auto hide-scrollbar bg-linear-to-b from-[#E6FFFF] to-[#FFFFFF]">
+        <div className="flex-1 overflow-y-visible hide-scrollbar bg-linear-to-b from-[#E6FFFF] to-[#FFFFFF]">
             <Navbar/>
             <Outlet />
             <Footer/>

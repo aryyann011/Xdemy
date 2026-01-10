@@ -5,59 +5,75 @@ import { useAuth } from "../Context/Authcontext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { MdCancel } from "react-icons/md";
+import { toast } from "react-toastify"; // Added toast import to match usage
 
 function Signup(){
 
-const [error, setError] = useState("")
-const {register, handleSubmit, formState : {errors}} = useForm()
-const {signup, loginWithGoogle, closeSignupModal, OpenloginModal} = useAuth()
-const navigate = useNavigate()
-const Signupuser = async(data) => {
-    setError("")
-    try{
-        const session = await signup(data)
-
-        if(session){
-            closeSignupModal()
-            navigate('/')
+    const [error, setError] = useState("")
+    const {register, handleSubmit, formState : {errors}} = useForm()
+    const {signup, loginWithGoogle, closeSignupModal, OpenloginModal} = useAuth()
+    const navigate = useNavigate()
+    
+    const Signupuser = async(data) => {
+        setError("")
+        try{
+            const session = await signup(data)
+            if(session){
+                closeSignupModal()
+                navigate('/')
+            }
+        }
+        catch(error){
+            setError(error.message)
         }
     }
-    catch(error){
-        setError(error.message)
-    }
-}
-const handleGoogleSignup = async () => {
-    try {
-        await loginWithGoogle();
-        closeSignupModal(); 
-    } catch (error) {
-        toast.error("Could not reach Google server.");
-    }
-};
+
+    const handleGoogleSignup = async () => {
+        try {
+            await loginWithGoogle();
+            closeSignupModal(); 
+        } catch (error) {
+            toast.error("Could not reach Google server.");
+        }
+    };
 
     return (
-        <div className="h-full w-full fixed flex flex-row justify-center inset-0 items-center z-50">
-            <form action="" onSubmit={handleSubmit(Signupuser)} className="h-4/6 w-1/4 flex flex-col gap-4 items-center bg-[#FFFFFF] p-5 rounded-2xl border-2">
-                    <div className="w-full flex justify-end gap-18">
-                        <h1 className="text-[#212126] font-bold">Create your Account</h1>
-                        <MdCancel onClick={closeSignupModal} className="text-2xl cursor-pointer"/>
-                    </div>
-                <p className="text-[#6B7280] text-[14px]">Welcome! Please fill in the details to get started.</p>
-                <button onClick={handleGoogleSignup} className="h-8 w-9/10 cursor-pointer border flex flex-row justify-center items-center gap-3">
-                    <img src="/image/images.png" className="h-3/4" alt="" />
-                    <p>Continue with google</p>
+        // 1. Added padding (p-4) and backdrop (bg-black/20) for better focus
+        <div className="h-full w-full fixed flex flex-row justify-center inset-0 items-center z-50 bg-black/20 backdrop-blur-sm p-4">
+            
+            {/* 2. Changed dimensions to be responsive (w-full on mobile, fixed on desktop) and auto-height */}
+            <form action="" onSubmit={handleSubmit(Signupuser)} className="w-full sm:w-[450px] h-auto max-h-[90vh] overflow-y-auto flex flex-col gap-5 items-center bg-[#FFFFFF] p-6 rounded-2xl shadow-xl border-none scrollbar-hide">
+                    
+                {/* 3. Header: Relative container to center title, Absolute icon to pin right */}
+                <div className="w-full relative flex justify-center items-center mb-2">
+                    <h1 className="text-[#212126] font-bold text-xl">Create your Account</h1>
+                    <MdCancel 
+                        onClick={closeSignupModal} 
+                        className="absolute right-0 text-3xl cursor-pointer hover:text-red-500 transition-colors"
+                    />
+                </div>
+                
+                <p className="text-[#6B7280] text-[14px] text-center -mt-2">Welcome! Please fill in the details to get started.</p>
+                
+                {/* 4. Google Button: w-full for full width */}
+                <button onClick={handleGoogleSignup} className="h-10 w-full cursor-pointer border rounded-lg flex flex-row justify-center items-center gap-3 hover:bg-gray-50 transition">
+                    <img src="/image/images.png" className="h-5" alt="" />
+                    <p className="font-medium text-sm text-gray-600">Continue with Google</p>
                 </button>
 
-                <div className="flex flex-row w-9/10 items-center gap-3">
+                {/* 5. Divider: w-full */}
+                <div className="flex flex-row w-full items-center gap-3">
                     <hr className="border-none h-0.5 bg-gray-300 w-1/2" />
-                    <span className="line">or</span>
+                    <span className="text-gray-400 text-sm">or</span>
                     <hr className="border-none h-0.5 bg-gray-300 w-1/2" />
                 </div>
-                <div className="h-1/7 w-9/10 flex flex-col gap-1 justify-center">
-                    <label htmlFor="emailid" className="h-3 w-full self-start mb-4">Email Address</label>
+
+                {/* 6. Email Input: Removed fixed height container (h-1/7), used flex-col */}
+                <div className="w-full flex flex-col gap-1 justify-center">
+                    <label htmlFor="emailid" className="text-sm font-semibold mb-1">Email Address</label>
                     <input type="text" 
                     id="emailid"
-                    className="w-full h-8 p-4 border"
+                    className="w-full h-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter your Email Address"
                     {...register("email", {
                         required : true, 
@@ -68,14 +84,16 @@ const handleGoogleSignup = async () => {
                     })}
                     />
                     {errors.email && (
-                        <p className="text-red-500 text-sm">{errors.email.message}</p>
+                        <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
                     )}
                 </div>
-                <div className="h-1/7 w-9/10 flex flex-col gap-1 justify-center">
-                    <label htmlFor="pass" className="h-3 w-full self-start mb-4">Password</label>
-                    <input type="text" 
+
+                {/* 7. Password Input: Fixed type to 'password' (was 'text') for security, removed fixed height */}
+                <div className="w-full flex flex-col gap-1 justify-center">
+                    <label htmlFor="pass" className="text-sm font-semibold mb-1">Password</label>
+                    <input type="password" 
                     id="pass"
-                    className="w-full h-8 p-4 border"
+                    className="w-full h-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter your password"
                     {...register("password", {
                         required : true,
@@ -91,18 +109,22 @@ const handleGoogleSignup = async () => {
                     })}
                     />
                     {errors.password && (
-                        <p className="text-red-500 text-sm">{errors.password.message}</p>
+                        <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
                     )}
                 </div>
 
-                <button type="submit" className="w-9/10 h-8 bg-[#111820] text-amber-50">Continue</button>
-                {error && <p className="text-red-600 text-center">{error}</p>}
+                {/* 8. Continue Button: w-full, improved hover state */}
+                <button type="submit" className="w-full h-10 bg-[#111820] text-amber-50 rounded-lg hover:bg-gray-800 transition font-medium">Continue</button>
+                
+                {error && <p className="text-red-600 text-center text-sm">{error}</p>}
+                
                 <hr className="border-none h-0.5 bg-gray-300 w-full" />
-                <p>Already have an account?
+                
+                <p className="text-sm text-gray-600">Already have an account?
                     <span onClick={() => {
                         closeSignupModal();
                         OpenloginModal();
-                    }} className="font-semibold cursor-pointer">
+                    }} className="font-bold text-[#111820] cursor-pointer ml-1 hover:underline">
                         Sign In
                     </span>
                 </p>
