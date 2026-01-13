@@ -6,13 +6,13 @@ function Home() {
   return (
     <div className="h-auto w-full flex flex-col items-center px-4 md:px-0">
       
-      <div className="w-full max-w-3xl flex flex-col justify-center items-center text-center gap-6 mt-10 md:mt-20 py-10">
-        <h1 className="font-bold text-3xl md:text-5xl leading-tight">
+      <div className="w-full max-w-2xl flex flex-col justify-center items-center text-center gap-6 mt-10 md:mt-20 py-10">
+        <h1 className="md:w-3/4 w-3/4 font-bold text-3xl md:text-5xl leading-tight">
           Empower your future with the courses designed to{" "}
           <span className="text-[#2563EB]">fit your choice</span>
         </h1>
         
-        <p className="w-full md:w-3/4 text-[#565656] text-sm md:text-base">
+        <p className="md:w-3/4 w-3/4 text-[#565656] text-sm md:text-base">
           We bring together world-class instructors, interactive content, and a
           supportive community to help you achieve your personal and
           professional goals.
@@ -65,7 +65,6 @@ function Home() {
               <div className="flex flex-row gap-2 items-center text-sm">
                 <span className="font-bold text-amber-500">4.5</span>
                 <div className="flex">
-                   {/* Simplified stars for brevity */}
                    {[1,2,3,4].map(i => <img key={i} src="/image/star_icon.png" className="w-4 h-4" alt="" />)}
                    <img src="/image/star_dull_icon.svg" className="w-4 h-4" alt="" />
                 </div>
@@ -92,7 +91,7 @@ function Home() {
             </div>
           </li>
 
-          {/* Card 3 */}
+
           <li className="border border-[#E1E1E1] rounded-lg overflow-hidden flex flex-col pb-4 hover:shadow-lg transition-shadow">
             <img className="h-48 w-full object-cover" src="/image/img1.png" alt="" />
             <div className="px-4 flex flex-col gap-2 mt-3 flex-grow">
@@ -110,7 +109,7 @@ function Home() {
             </div>
           </li>
 
-          {/* Card 4 */}
+          
           <li className="border border-[#E1E1E1] rounded-lg overflow-hidden flex flex-col pb-4 hover:shadow-lg transition-shadow">
             <img className="h-48 w-full object-cover" src="/image/img4.png" alt="" />
             <div className="px-4 flex flex-col gap-2 mt-3 flex-grow">
@@ -136,7 +135,7 @@ function Home() {
         </Link>
       </div>
 
-      {/* --- TESTIMONIALS SECTION --- */}
+     
       <div className="w-full max-w-7xl mt-20 flex flex-col justify-center items-center gap-10 font-medium text-[#565656] px-4">
         <div className="text-center">
             <h1 className="text-[#0E0E0E] text-3xl mb-4">Testimonials</h1>
@@ -145,9 +144,7 @@ function Home() {
             </p>
         </div>
 
-        {/* Changed: Flex-row to Grid. This handles the 1-column (mobile) vs 3-column (desktop) layout automatically */}
         <ul className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Testimonial 1 */}
           <li className="border border-[#E1E1E1] rounded-lg flex flex-col overflow-hidden">
             <div className="flex flex-row gap-4 items-center p-4 bg-[#F3F3F3]">
               <img src="/image/profile_img_2.png" className="h-12 w-12 rounded-full object-cover" alt="" />
@@ -167,7 +164,6 @@ function Home() {
             </div>
           </li>
           
-          {/* Testimonial 2 */}
           <li className="border border-[#E1E1E1] rounded-lg flex flex-col overflow-hidden">
             <div className="flex flex-row gap-4 items-center p-4 bg-[#F3F3F3]">
               <img src="/image/profile_img_3.png" className="h-12 w-12 rounded-full object-cover" alt="" />
@@ -187,7 +183,6 @@ function Home() {
             </div>
           </li>
 
-          {/* Testimonial 3 */}
           <li className="border border-[#E1E1E1] rounded-lg flex flex-col overflow-hidden">
             <div className="flex flex-row gap-4 items-center p-4 bg-[#F3F3F3]">
               <img src="/image/profile_img_1.png" className="h-12 w-12 rounded-full object-cover" alt="" />
@@ -209,14 +204,12 @@ function Home() {
         </ul>
       </div>
 
-      {/* --- CTA SECTION --- */}
       <div className="w-full max-w-4xl mt-20 flex flex-col justify-center items-center gap-6 font-medium text-[#565656] px-4">
         <h1 className="text-[#1F2937] text-2xl md:text-3xl w-full text-center font-semibold">Learn anything, anytime, anywhere</h1>
         <p className="text-center max-w-xl">
           Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.
         </p>
         
-        {/* Changed: w-1/3 to w-full sm:w-auto. On mobile, buttons stack or stretch. */}
         <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button className="w-full sm:w-40 h-10 bg-[#0260FFE5] text-[#FFFFFF] rounded-md hover:bg-blue-600 transition-colors">
             Get Started
@@ -227,7 +220,6 @@ function Home() {
           </div>
         </div>
       </div>
-      {/* <Footer/> */}
     </div>
   );
 }
