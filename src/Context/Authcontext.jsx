@@ -62,7 +62,6 @@ export function Authprovider({children}){
         login: supabaseService.login,
         logout: supabaseService.logout,
         loginWithGoogle: supabaseService.loginWithGoogle,
-        handleClick,
         AllOff,
 
 
