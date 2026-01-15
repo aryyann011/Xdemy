@@ -2,11 +2,14 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../Context/Authcontext";
 
 const RoleRedirect = () => {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, OpenloginModal } = useAuth();
 
   if (isLoading) return null;
 
-  if (!user) return <Navigate to="/landing" replace />;
+  if (!user){
+    OpenloginModal()
+    return <Navigate to="/landing" replace />;
+  }
 
   const role = user.user_metadata?.role;
 
