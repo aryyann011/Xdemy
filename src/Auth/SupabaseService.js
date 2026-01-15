@@ -79,18 +79,25 @@ export class SupabaseService {
     async loginWithGoogle() {
         try {
             const { data, error } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
+            provider: 'google',
+            options: {
+                redirectTo: 'https://xdemy.vercel.app',
+                queryParams: {
+                prompt: 'select_account'
+                }
+            }
             });
 
             if (error) throw error;
             return data;
 
         } catch (error) {
-            console.error("Google login error: ", error.message);
+            console.error("Google login error:", error.message);
             throw error;
         }
+        }
+
     }
-}
 
 const supabaseService = new SupabaseService();
 

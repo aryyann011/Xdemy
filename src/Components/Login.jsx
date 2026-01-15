@@ -40,11 +40,11 @@ function Login(){
 
     const handleDemoLogin = (role) => {
         if (role === 'teacher') {
-            setValue("email", "aryan456.rehla@gmail.com"); 
-            setValue("password", "Ar@180905");      
+            setValue("email", "demo.teacher@yourapp.com"); 
+            setValue("password", "demoPassword123!");      
         } else {
-            setValue("email", "aryan007.vns@gmail.com"); 
-            setValue("password", "Ar@180905");       
+            setValue("email", "demo.student@yourapp.com"); 
+            setValue("password", "demoPassword123!");       
         }
     }
 
