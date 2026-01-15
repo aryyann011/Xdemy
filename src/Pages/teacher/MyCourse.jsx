@@ -84,7 +84,7 @@ function MyCourses() {
         {(!mycourses || mycourses.length === 0) && (
             <div className="col-span-full text-center py-20 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
                 <p className="text-gray-500 mb-4">You haven't created any courses yet.</p>
-                <Link to="teacher/add-course" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                <Link to="/teacher/addCourse" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
                     Create Your First Course
                 </Link>
             </div>
