@@ -128,7 +128,7 @@ function Home() {
           </li>
         </ul>
 
-        <Link to="courses">
+        <Link to="/courses">
           <button className="h-[50px] px-8 rounded-md flex cursor-pointer justify-center items-center text-[16px] text-[#8A8C8F] border border-[#6B728080] hover:bg-gray-50 transition-colors">
             Show all courses
           </button>
