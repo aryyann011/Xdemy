@@ -7,7 +7,6 @@ const RoleRedirect = () => {
   if (isLoading) return null;
 
   if (!user){
-    OpenloginModal()
     return <Navigate to="/landing" replace />;
   }
 
